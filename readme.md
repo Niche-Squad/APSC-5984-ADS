@@ -40,4 +40,4 @@ After completing the course, the students are anticipated to
 | :--- | :-------- | :-------- | :---|
 | 1 | [Holiday] Martin Luther King Jr. Day | What is Data Science? | Environment setup |
 | 2 | Coding environment | Python basics | Python basics |
-| 3 | Daat frames | Daat frames | Pandas library |
+| 3 | Data frames | Data frames | Pandas library |
