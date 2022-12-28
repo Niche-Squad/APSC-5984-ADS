@@ -2,7 +2,7 @@
 
 Estimated time to complete: 3 hours
 
-Due: 2023-01-23 (Mon.) 23:59:59
+Due: 2023-01-23 (Monday) 23:59:59
 
 ## 1. Overview
 
