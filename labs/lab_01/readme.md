@@ -30,13 +30,13 @@ If you are using a Mac, you can use the built-in Terminal app. You can find it i
 
 1. If you are using a Windows machine, you are recommended to use Windows Subsystem for Linux (WSL) (https://docs.microsoft.com/en-us/windows/wsl/install-win10) to set up a unix command-line environment. Open `PowerShell` and run the following command to enable WSL:
 
-```powershell
-wsl --install
-```
+    ```shell
+    wsl --install
+    ```
 
 2. Then, install a Linux distribution (we will use Ubuntu 20.04.5 LTS) from Windows Store.
 
-3. After installing WSL, you can   verify the installation in the Start menu or search for "Ubuntu" in the search bar. This will open a terminal window (hereinafter referred to as `terminal`).
+3. After installing WSL, you can verify the installation in the Start menu or search for "Ubuntu" in the search bar. This will open a terminal window (hereinafter referred to as `terminal`).
 
 4. Open `File Explore` and on the sidebar you should see a new drive called `Linux`. This is the Linux file system you will interact throughout the course. You are encouraged to pin the directory `/Linux/Ubuntu-20.04/home/<your user name>` (hereinafer referred to as `home` folder) to the taskbar for easy access.
 
@@ -224,4 +224,4 @@ Before you run the scripts, make sure your kernel is set to the Conda version of
 
 ### 8.8 Submit the lab assignment
 
-After you finish the lab assignment, you need to push the changes to your GitHub repository. In VS code, you can click the `Source Control` button on the left side. You will see the changes you made to the files. Enter a commit message "lab 1 assignment" and click the `Commit` button to commit the change. Finally, click the `Push` button to push the changes to your GitHub repository. And you are done for this lab assignment!
+After you finish the lab assignment, you need to push the changes to your GitHub repository. In VS code, you can click the `Source Control` button on the left side. You will see the changes you made to the files. Enter a commit message "lab 1 submission" and click the `Commit` button to commit the change. Finally, click the `Push` button to push the changes to your GitHub repository. And you are done for this lab assignment!
