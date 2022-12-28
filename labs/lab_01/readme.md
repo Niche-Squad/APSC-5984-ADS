@@ -188,7 +188,7 @@ Go to the course repository (https://github.com/Niche-Squad/APSC-5984-ADS). Clic
 
 Go to your forked repository. Click the "Code" green button and copy the SSH URL (not HTTPS URL). Open the terminal and navigate to the directory where you want to clone the repository. Then, type the following command to clone the repository to your local machine:
 
-```bash
+``  bash
 git clone git@github.com:<your username>/APSC-5984-ADS.git
 ```
 
