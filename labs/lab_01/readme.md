@@ -1,6 +1,8 @@
 # APSC-5984 Lab 1: Environment Setup
 
-Est. time to complete: 1 to 3 hours
+Estimated time to complete: 3 hours
+
+Due: 2023-01-23 (Mon.) 23:59:59
 
 ## 1. Overview
 
@@ -42,17 +44,16 @@ wsl --install
 Quoted from the Miniconda website:
 > Miniconda is a free minimal installer for conda. It is a small, bootstrap version of Anaconda that includes only conda, Python, the packages they depend on, and a small number of other useful packages, including pip, zlib and a few others. Use the `conda install` command to install 720+ additional conda packages from the Anaconda repository.
 
-Please download the installers from https://docs.conda.io/en/latest/miniconda.html to install Miniconda.
-
 ### 3.1 Mac users
 
-Choose the correct version for your operating system and follow the instruction from the downloaded installer.
+Download the correct version for your operating system to install Miniconda from https://docs.conda.io/en/latest/miniconda.html
 
 ### 3.2 Windows users
 
-1. Choose the Linux installer (should be `Miniconda3-latest-Linux-x86_64.sh` or something similar) and put it in your `home` folder.
-2. run `bash Miniconda3-latest-Linux-x86_64.sh` in the terminal to install Miniconda.
-3. Close and reopen the terminal to activate the changes.
+1. Go to https://docs.conda.io/en/latest/miniconda.html
+2. Choose the **Linux** installer (should be `Miniconda3-latest-Linux-x86_64.sh` or something similar) and put it in your `home` folder.
+3. run `bash Miniconda3-latest-Linux-x86_64.sh` in the terminal to install Miniconda.
+4. Close and reopen the terminal to activate the changes.
 
 To verify if you have installed Miniconda correctly, you can type `conda -V` in the terminal and you should see the installed version of Miniconda.
 
@@ -89,7 +90,7 @@ Visual Studio Code (VS Code) is a free and open-source source-code editor develo
 
 ### 5.1 Installation
 
-The installation is pretty straightforward. Please follow the instruction on the VS Code website (https://code.visualstudio.com/).
+The installation is pretty straightforward. Please follow the instruction on the VS Code website (https://code.visualstudio.com/). Windows users can download the Windows installer for WSL, no need to install the Linux version.
 
 ### 5.2 Essential extensions
 
@@ -130,7 +131,7 @@ git version 2.34.1
 
 ### 7.2 Manage your Git username and email
 
-After installing Git, you need to configure it with your GitHub account. You can follow the instruction (https://docs.github.com/en/get-started/getting-started-with-git/setting-your-username-in-git?platform=mac).
+After installing Git, you need to configure it with your GitHub account. You can follow the instruction here https://docs.github.com/en/get-started/getting-started-with-git/setting-your-username-in-git?platform=mac
 
 Set up global username and email for all repositories
 
@@ -148,7 +149,7 @@ git config user.email
 
 ### 7.3 Manage your SSH keys
 
-SSH keys are used to authenticate you to GitHub without using your username and password. You can find the instruction (https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=mac).
+SSH keys are used to authenticate you to GitHub without using your username and password. You can find the instruction here: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=mac
 
 In the terminal, type the following command to generate a new SSH key
 :
@@ -198,7 +199,15 @@ Go to your forked repository. Click the "Settings" button. On the left side, cli
 
 ### 8.4 Open VS Code
 
-Open VS Code as other applications if you are on Mac. If you are a Windows user, open the `terminal` and type `code` to open VS Code so that you are interacting with the Linux environment.
+Open VS Code as other applications if you are on Mac.
+
+ATTENTION, if you are a Windows user, open the WSL `terminal` and type
+
+```bash
+code
+```
+
+to open VS Code so that you are interacting with the Linux environment.
 
 ### 8.5 Navigate to the lab assignment folder
 
@@ -210,7 +219,7 @@ On the left side, you will see EXPLORER where you can navigate through the files
 
 ### 8.7 Run the lab assignment
 
-Before you run the scripts, make sure your kernel is set to Conda version of Python. You can check the kernel by clicking the button on the top right corner of the notebook. It should be set to something similar to `base (Python 3.10.x)`. Finally, click the `Run All` button on the top menu bar to run the lab assignment.
+Before you run the scripts, make sure your kernel is set to the Conda version of Python. You can check the kernel by clicking the button on the top right corner of the notebook. It should be set to something similar to `base (Python 3.10.x)`. Finally, click the `Run All` button on the top menu bar to run the lab assignment.
 
 ### 8.8 Submit the lab assignment
 
