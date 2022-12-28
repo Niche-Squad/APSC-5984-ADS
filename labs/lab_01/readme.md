@@ -8,12 +8,13 @@ Due: 2023-01-23 (Mon.) 23:59:59
 
 In this lab, you will set up your coding environment for the course. This includes:
 
-- Setting up unix command-line environment
-- Installing Miniconda, which is an environment manager for Python
-- Installing Jupyter Notebook
-- Installing Visual Studio Code (VS Code), which is the IDE we will use for the course
-- Creating a GitHub account
-- Installing Git and configuring it with your GitHub account
+- Setting up [unix command-line environment](#2-unix-command-line-environment)
+
+- [Installing Miniconda](#3-miniconda), which is an environment manager for Python
+- [Installing Jupyter Notebook](#4-jupyter-notebook)
+- Installing Visual Studio Code ([VS Code](#5-visual-studio-code)), which is the IDE we will use for the course
+- Creating a [GitHub account](#6-create-a-github-account)
+- Installing [Git and configuring it with your GitHub account](#7-install-git-and-configure-it-with-your-github-account)
 
 The procedure may vary depending on your operating system. Please follow the instruction carefully and ask for help if you have any questions.
 
@@ -96,7 +97,7 @@ The installation is pretty straightforward. Please follow the instruction on the
 
 After installing VS Code, you can open it and install the following required extensions:
 
-- `WSL`: (Windows users ONLY) This extension allows you to open a terminal in WSL from VS Code.
+- `WSL`: (Required for Windows users) This extension allows you to open a terminal in WSL from VS Code.
 - `Python`: This extension adds rich support for Python to VS Code, including features such as IntelliSense, linting, debugging, code navigation, code formatting, Jupyter notebook support, refactoring, variable explorer, test explorer, snippets, and more.
 - `Pylance`: This extension provides a fast, feature-rich language server for Python to check your code for errors and provide code completion.
 - `Jupyter`: This extension allows you to run Jupyter Notebook in VS Code.
@@ -110,7 +111,7 @@ Optional extensions:
 
 ## 6. Create a GitHub account
 
-Please use VT email to register a GitHub account (https://github.com/). We will use GitHub to submit your lab assignments. You will be asked to create a repository for each lab assignment, and you will push the assignments to this repository throughout the semester.
+Please use VT email to register a GitHub account (https://github.com/). We will use GitHub to submit the lab assignments throughout the semester.
 
 ## 7. Install Git and configure it with your GitHub account
 

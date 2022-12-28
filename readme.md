@@ -49,17 +49,17 @@ All students are expected to maintain the highest standards of academic integrit
 
 | Week | Lecture 1 | Lecture 2 | Lab |
 | :--- | :-------- | :-------- | :---|
-| 1 | [Holiday] Martin Luther King Jr. Day | What is Data Science? | Environment setup |
+| 1 | [No class] <br> Martin Luther King Jr. Day | What is Data Science? | Environment setup |
 | 2 | Coding environment | Python basics | Python basics I |
 | 3 | List, index | if-else, for-loop | Python basics II |
 | 4 | File system | String processing | Python basics III |
 | 5 | Data frames | Data frames | Pandas library |
-| 6 | [Holiday] Presidents' Day | Intro to database | Public datasets |
+| 6 | [No class] <br> Presidents' Day | Intro to database | Public datasets |
 | 7 | SQL basics | SQLite 3 | SQLite 3 |
-| 8 | Spring break | Spring break | Spring break |
+| 8 | [No class] <br> Spring break | [No class] <br> Spring break | [No class] <br> Spring break |
 | 9 | Regression model | Regularization | Sciki-learn |
 | 10 | Feature selection | Model validation | Feature selection |
-| 11 | Principal Component Analysis | K-means clustering | Implementation |
+| 11 | Principal Component Analysis | K-means clustering | PCA and K-means |
 | 12 | Intro to computer vision | Convolution | OpenCV |
 | 13 | Data visualization | Web app | Plotly |
 | 14 | Object-oriented programming | Encapsulation | OOP implementation I |
