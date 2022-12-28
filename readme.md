@@ -1,5 +1,7 @@
 # APSC-5984 SS: Agriculture Data Science
 
+![](APSC-5984-Flyer.png)
+
 ## Course Logistics
 
 **Instructor**: [James Chen](https://github.com/poissonfish) (<niche@vt.edu>)
