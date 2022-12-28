@@ -17,6 +17,8 @@ Due: 2023-01-30 (Monday) 23:59:59
 
 In this lab, you will learn basic Python syntax. We will cover the essential concepts of Python, including variables, data types, operators, and control flow. You will need to open the `labs/lab_02/assignment.ipynb` file in VS Code and follow the instruction to complete this lab assignment.
 
+([Back to top](#apsc-5984-lab-2-python-basics-i))
+
 ## 1. Variables
 
 There are several rules for naming variables in Python:
@@ -46,6 +48,8 @@ And we can print the value of `first_var` by running the following code:
 ```Python
 print(first_var) # 3
 ```
+
+[(Back to top)](#apsc-5984-lab-2-python-basics-i)
 
 ## 2. Data Types
 
@@ -86,6 +90,8 @@ var_int = 3
 var_str = str(var_int)
 print(var_str) # "3"
 ```
+
+[(Back to top)](#apsc-5984-lab-2-python-basics-i)
 
 ## 3. Operators
 
@@ -137,7 +143,6 @@ print(a > b) # False
 ASCII Table from [Wikipedia](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/ASCII-Table-wide.svg/1200px-ASCII-Table-wide.svg.png):
 ![ASCII Table](res/ascii.png)
 
-
 ### 3.4. Logical Operators
 
 You can use logical operators to perform logical operations. For example, you can use the `and` operator to check if two conditions are both `True`. We use `a = True` and `b = False` as examples in the following table to illustrate the usage of logical operators. It is noted that some operators are interchangeable, e.g., `and` and `&&`.
@@ -150,6 +155,8 @@ You can use logical operators to perform logical operations. For example, you ca
 | \|\| | Logical OR | `a \|\| b` | `True` |
 | `not` | Logical NOT | `not a` | `False` |
 | ! | Logical NOT | `!a` | `False` |
+
+[(Back to top)](#apsc-5984-lab-2-python-basics-i)
 
 ## 4. Conditional Statements
 
@@ -202,3 +209,5 @@ else:
 ```
 
 This code should print `"27 is divisible by 3"` because `27` is divisible by `3` but not `2`.
+
+[(Back to top)](#apsc-5984-lab-2-python-basics-i)
