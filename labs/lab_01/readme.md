@@ -8,13 +8,13 @@ Due: 2023-01-23 (Mon.) 23:59:59
 
 In this lab, you will set up your coding environment for the course. This includes:
 
-- Setting up [unix command-line environment](#2-unix-command-line-environment)
+- [Setting up unix command-line environment](#2-unix-command-line-environment)
 
-- [Installing Miniconda](#3-miniconda), which is an environment manager for Python
+- [Installing Miniconda, which is an environment manager for Python](#3-miniconda)
 - [Installing Jupyter Notebook](#4-jupyter-notebook)
-- Installing Visual Studio Code ([VS Code](#5-visual-studio-code)), which is the IDE we will use for the course
-- Creating a [GitHub account](#6-create-a-github-account)
-- Installing [Git and configuring it with your GitHub account](#7-install-git-and-configure-it-with-your-github-account)
+- [Installing Visual Studio Code (VS Code), which is the IDE we will use for the course](#5-visual-studio-code)
+- [Creating a GitHub account](#6-create-a-github-account)
+- [Installing Git and configuring it with your GitHub account](#7-install-git-and-configure-it-with-your-github-account)
 
 The procedure may vary depending on your operating system. Please follow the instruction carefully and ask for help if you have any questions.
 
