@@ -56,12 +56,12 @@ All students are expected to maintain the highest standards of academic integrit
 | 5 | Data frames | Data frames | Pandas library |
 | 6 | [Holiday] Presidents' Day | Intro to database | Public datasets |
 | 7 | SQL basics | SQLite 3 | SQLite 3 |
-| 8 | Spring break
-| 9 | TBD | TBD | TBD |
-| 10 | TBD | TBD | TBD |
-| 11 | TBD | TBD | TBD |
-| 12 | TBD | TBD | TBD |
-| 13 | TBD | TBD | TBD |
-| 14 | TBD | TBD | TBD |
-| 15 | TBD | TBD | TBD |
+| 8 | Spring break | Spring break | Spring break |
+| 9 | Regression model | Regularization | Sciki-learn |
+| 10 | Feature selection | Model validation | Feature selection |
+| 11 | Principal Component Analysis | K-means clustering | Implementation |
+| 12 | Intro to computer vision | Convolution | OpenCV |
+| 13 | Data visualization | Web app | Plotly |
+| 14 | Object-oriented programming | Encapsulation | OOP implementation I |
+| 15 | Object and Class | Inheritance and polymorphsm | OOP implementation II |
 | 16 | Project presentation | Project presentation | Lab final exam |
