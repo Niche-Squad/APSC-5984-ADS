@@ -57,7 +57,7 @@ All students are expected to maintain the highest standards of academic integrit
 | 6 | [No class] <br> Presidents' Day | Intro to database | Public datasets |
 | 7 | SQL basics | SQLite 3 | SQLite 3 |
 | 8 | [No class] <br> Spring break | [No class] <br> Spring break | [No class] <br> Spring break |
-| 9 | Regression model | Regularization | Sciki-learn |
+| 9 | Regression model | Regularization | Scikit-learn |
 | 10 | Feature selection | Model validation | Feature selection |
 | 11 | Principal Component Analysis | K-means clustering | PCA and K-means |
 | 12 | Intro to computer vision | Convolution | OpenCV |
