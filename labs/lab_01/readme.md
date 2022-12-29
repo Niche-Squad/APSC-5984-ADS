@@ -53,9 +53,11 @@ If you are using a Mac, you can use the built-in Terminal app. You can find it i
 
 2. Then, install a Linux distribution (we will use Ubuntu 20.04.5 LTS) from Windows Store.
 
-3. After installing WSL, you can verify the installation in the Start menu or search for "Ubuntu" in the search bar. This will open a terminal window (hereinafter referred to as `terminal`).
+![WSL](./res/ubuntu_install.png)
 
-4. Open `File Explore` and on the sidebar you should see a new drive called `Linux`. This is the Linux file system you will interact throughout the course. You are encouraged to pin the directory `/Linux/Ubuntu-20.04/home/<your user name>` (hereinafer referred to as `home` folder) to the taskbar for easy access.
+1. After installing WSL, you can verify the installation in the Start menu or search for "Ubuntu" in the search bar. This will open a terminal window (hereinafter referred to as `terminal`).
+
+2. Open `File Explore` and on the sidebar you should see a new drive called `Linux`. This is the Linux file system you will interact throughout the course. You are encouraged to pin the directory `/Linux/Ubuntu-20.04/home/<your user name>` (hereinafer referred to as `home` folder) to the taskbar for easy access.
 
 [(Back to top)](#apsc-5984-lab-1-environment-setup)
 
@@ -217,7 +219,11 @@ Go to the course repository (https://github.com/Niche-Squad/APSC-5984-ADS). Clic
 
 ### 7.2 Clone the course repository to your local machine
 
-Go to your forked repository. Click the "Code" green button and copy the SSH URL (not HTTPS URL). Open the terminal and navigate to the directory where you want to clone the repository. Then, type the following command to clone the repository to your local machine:
+Go to your forked repository. Click the "Code" green button and copy the SSH URL (not HTTPS URL). Open the terminal and navigate to the directory where you want to clone the repository.
+
+![clone](res/github_clone.png)
+
+Then, type the following command to clone the repository to your local machine:
 
 ```bash
 git clone git@github.com:<your username>/APSC-5984-ADS.git
@@ -225,19 +231,21 @@ git clone git@github.com:<your username>/APSC-5984-ADS.git
 
 ### 7.3 Share your repository with the instructor
 
-Go to your forked repository. Click the "Settings" button. On the left side, click "Collaboratiors and teams". Click "Add people" and search the instructor's username `poissonfish`. Grant a `Write` permission and click "Add poissonfish to this repository". It will allows the instructor to view your repository and give you feedback.
+Go to your forked repository. Click the "Settings" button. On the left side, click "Collaborators and teams". Click "Add people" and search the instructor's username `poissonfish`. Grant a `Write` permission and click "Add poissonfish to this repository". It will allows the instructor to view your repository and give you feedback.
 
 ### 7.4 Open VS Code
 
 Open VS Code as other applications if you are on Mac.
 
-ATTENTION, if you are a Windows user, open the WSL `terminal` and type
+ATTENTION, if you are a Windows user, open the WSL `terminal` and type `code` to open VS Code to let you work in the Linux environment instead of the Windows environment.
 
 ```bash
 code
 ```
 
-to open VS Code so that you are interacting with the Linux environment.
+You will see "WSL:Ubuntu-20.04" on the bottom left corner when you open VS Code in WSL.
+
+![WSL](res/vscode_wsl.png)
 
 ### 7.5 Navigate to the lab assignment folder
 
@@ -249,10 +257,14 @@ On the left side, you will see EXPLORER where you can navigate through the files
 
 ### 7.7 Run the lab assignment
 
-Before you run the scripts, make sure your kernel is set to the Conda version of Python. You can check the kernel by clicking the button on the top right corner of the notebook. It should be set to something similar to `base (Python 3.10.x)`. Finally, click the `Run All` button on the top menu bar to run the lab assignment.
+Before you run the scripts, make sure your kernel is set to the Conda version of Python. You can check the kernel by clicking the button on the top right corner of the notebook. It should be set to something similar to `base (Python 3.10.x) ~/miniconda3/bin/python`. Finally, click the `Run All` button on the top menu bar to run the lab assignment.
+
+![kernel](res/vscode_env.png)
 
 ### 7.8 Submit the lab assignment
 
 After you finish the lab assignment, you need to push the changes to your GitHub repository. In VS code, you can click the `Source Control` button on the left side. You will see the changes you made to the files. Enter a commit message "lab 1 submission" and click the `Commit` button to commit the change. Finally, click the `Push` button to push the changes to your GitHub repository. And you are done for this lab assignment!
+
+![commit](res/vscode_commit.png)
 
 [(Back to top)](#apsc-5984-lab-1-environment-setup)
