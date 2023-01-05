@@ -51,7 +51,7 @@ All students are expected to maintain the highest standards of academic integrit
 | :--- | :-------- | :-------- | :---|
 | 1 | [No class] <br> Martin Luther King Jr. Day | What is Data Science? | Environment setup |
 | 2 | Coding environment | Python basics | Python basics I |
-| 3 | List, index | if-else, for-loop | Python basics II |
+| 3 | List and Dictionary | Loop | Python basics II |
 | 4 | File system | String processing | File system |
 | 5 | Data frames | Data frames | Pandas library |
 | 6 | [No class] <br> Presidents' Day | Intro to database | Public datasets |
