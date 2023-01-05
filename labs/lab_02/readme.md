@@ -15,7 +15,15 @@ Due: 2023-01-30 (Monday) 23:59:59
 
 ## 0. Overview
 
-In this lab, you will learn basic Python syntax. We will cover the essential concepts of Python, including variables, data types, operators, and control flow. You will need to open the `labs/lab_02/assignment.ipynb` file in VS Code and follow the instruction to complete this lab assignment.
+In this lab, you will learn basic Python syntax. We will cover the essential concepts of Python:
+
+- Variables and data types
+
+- Operators
+
+- Control structures: If-else statements
+
+You will need to open the `labs/lab_02/assignment.ipynb` file in VS Code and follow the instruction to complete this lab assignment.
 
 ([Back to top](#apsc-5984-lab-2-python-basics-i))
 
