@@ -166,6 +166,7 @@ After installing Git, you need to configure it with your GitHub account. You can
 Set up global username and email for all repositories
 
 ```bash
+# Don't need to include the arrow signs  "< >"
 git config --global user.name <your username>
 git config --global user.email <your email>
 ```
