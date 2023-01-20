@@ -73,8 +73,13 @@ Download the correct version for your operating system to install Miniconda from
 ### 2.2 Windows users
 
 1. Go to https://docs.conda.io/en/latest/miniconda.html
-2. Choose the **Linux** installer (should be `Miniconda3-latest-Linux-x86_64.sh` or something similar) and put it in your `home` folder.
-3. run `bash Miniconda3-latest-Linux-x86_64.sh` in the terminal to install Miniconda.
+2. Choose the **Linux** installer (should be `Miniconda3-latest-Linux-x86_64.sh` or something similar) and put it in your `home` folder in your Linux WSL (not Windows file system)
+3. Run the command in the terminal to install Miniconda
+
+```bash
+bash Miniconda3-latest-Linux-x86_64.sh
+```
+
 4. Close and reopen the terminal to activate the changes.
 
 To verify if you have installed Miniconda correctly, you can type `conda -V` in the terminal and you should see the installed version of Miniconda.
