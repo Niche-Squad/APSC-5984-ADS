@@ -218,4 +218,20 @@ else:
 
 This code should print `"27 is divisible by 3"` because `27` is divisible by `3` but not `2`.
 
+One more thing, the if-else statements can be rewritten using the ternary operator. For example, you can rewrite the below code as follows:
+
+```Python
+value = ""
+if 10 > 0:
+    value = "10 is greater than 0"
+else:
+    value = "10 is not greater than 0"
+```
+
+Which is equivalent to:
+
+```Python
+value = "10 is greater than 0" if 10 > 0 else "10 is not greater than 0"
+```
+
 [(Back to top)](#apsc-5984-lab-2-python-basics-i)
