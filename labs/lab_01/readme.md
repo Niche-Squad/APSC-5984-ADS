@@ -45,7 +45,7 @@ If you are using a Mac, you can use the built-in Terminal app. You can find it i
 
 ### 1.2 Windows users
 
-1. If you are using a Windows machine, you are recommended to use Windows Subsystem for Linux (WSL) (https://docs.microsoft.com/en-us/windows/wsl/install-win10) to set up a unix command-line environment. Open `PowerShell` and run the following command to enable WSL:
+1. If you are using a Windows machine, you are recommended to use Windows Subsystem for Linux (WSL) (<https://docs.microsoft.com/en-us/windows/wsl/install-win10>) to set up a unix command-line environment. Open `PowerShell` and run the following command to enable WSL:
 
     ```shell
     wsl --install
@@ -68,11 +68,11 @@ Quoted from the Miniconda website:
 
 ### 2.1 Mac users
 
-Download the correct version for your operating system to install Miniconda from https://docs.conda.io/en/latest/miniconda.html
+Download the correct version for your operating system to install Miniconda from <https://docs.conda.io/en/latest/miniconda.html>
 
 ### 2.2 Windows users
 
-1. Go to https://docs.conda.io/en/latest/miniconda.html
+1. Go to <https://docs.conda.io/en/latest/miniconda.html>
 2. Choose the **Linux** installer (should be `Miniconda3-latest-Linux-x86_64.sh` or something similar) and put it in your `home` folder in your Linux WSL (not Windows file system)
 3. Run the command in the terminal to install Miniconda
 
@@ -93,7 +93,7 @@ conda 22.11.1
 
 ## 3. Jupyter Notebook
 
-Jupyter Notebook is a web-based interactive computing platform. It allows you to create and share documents that contain live code, equations, visualizations and narrative text. It is widely used in data science and machine learning. You can find more information about Jupyter Notebook (https://jupyter.org/)
+Jupyter Notebook is a web-based interactive computing platform. It allows you to create and share documents that contain live code, equations, visualizations and narrative text. It is widely used in data science and machine learning. You can find more information about Jupyter Notebook (<https://jupyter.org/>)
 
 Thanks to the power of Miniconda, you can install Jupyter Notebook with a single command:
 
@@ -121,7 +121,7 @@ Visual Studio Code (VS Code) is a free and open-source source-code editor develo
 
 ### 4.1 Installation
 
-The installation is pretty straightforward. Please follow the instruction on the VS Code website (https://code.visualstudio.com/). Windows users can download the Windows installer for WSL, no need to install the Linux version.
+The installation is pretty straightforward. Please follow the instruction on the VS Code website (<https://code.visualstudio.com/>). Windows users can download the Windows installer for WSL, no need to install the Linux version.
 
 ### 4.2 Essential extensions
 
@@ -143,7 +143,7 @@ Optional extensions:
 
 ## 5. Create a GitHub account
 
-Please use VT email to register a GitHub account (https://github.com/). We will use GitHub to submit the lab assignments throughout the semester.
+Please use VT email to register a GitHub account (<https://github.com/>). We will use GitHub to submit the lab assignments throughout the semester.
 
 [(Back to top)](#apsc-5984-lab-1-environment-setup)
 
@@ -166,7 +166,7 @@ git version 2.34.1
 
 ### 6.2 Manage your Git username and email
 
-After installing Git, you need to configure it with your GitHub account. You can follow the instruction here https://docs.github.com/en/get-started/getting-started-with-git/setting-your-username-in-git?platform=mac
+After installing Git, you need to configure it with your GitHub account. You can follow the instruction here <https://docs.github.com/en/get-started/getting-started-with-git/setting-your-username-in-git?platform=mac>
 
 Set up global username and email for all repositories
 
@@ -185,7 +185,7 @@ git config user.email
 
 ### 6.3 Manage your SSH keys
 
-SSH keys are used to authenticate you to GitHub without using your username and password. You can find the instruction here: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=mac
+SSH keys are used to authenticate you to GitHub without using your username and password. You can find the instruction here: <https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=mac>
 
 In the terminal, type the following command to generate a new SSH key
 :
@@ -208,7 +208,7 @@ eval "$(ssh-agent -s)"
 # Agent pid 59566
 ```
 
-Finally, add the new SSH key to your GitHub account. Please follow the official instruction (https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account?tool=webui) to finish this step. To get the SSH key you are asked to paste into GitHub, you can type the following command:
+Finally, add the new SSH key to your GitHub account. Please follow the official instruction (<https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account?tool=webui>) to finish this step. To get the SSH key you are asked to paste into GitHub, you can type the following command:
 
 ```bash
 cat ~/.ssh/id_ed25519.pub
@@ -221,7 +221,7 @@ cat ~/.ssh/id_ed25519.pub
 
 ### 7.1 Fork the course repository
 
-Go to the course repository (https://github.com/Niche-Squad/APSC-5984-ADS). Click the `Fork` button on the top right corner. You will see a copy of the course repository in your GitHub account.
+Go to the course repository (<https://github.com/Niche-Squad/APSC-5984-ADS>). Click the `Fork` button on the top right corner. You will see a copy of the course repository in your GitHub account.
 
 ### 7.2 Clone the course repository to your local machine
 
