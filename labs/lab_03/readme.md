@@ -7,19 +7,27 @@ Due: 2023-02-06 (Monday) 23:59:59
   - [1. Lists](#1-lists)
     - [1.1 Assign values to a list](#11-assign-values-to-a-list)
     - [1.2 Accessing elements in a list](#12-accessing-elements-in-a-list)
-  - [2. Dictionaries](#2-dictionaries)
-    - [2.1 Creating a dictionary](#21-creating-a-dictionary)
-    - [2.2 Accessing elements in a dictionary](#22-accessing-elements-in-a-dictionary)
-  - [3. Loops](#3-loops)
-    - [3.1 `for` loops](#31-for-loops)
-    - [3.2 `while` loops](#32-while-loops)
-    - [3.3 `break` and `continue`](#33-break-and-continue)
+  - [2. NumPy Array](#2-numpy-array)
+    - [2.1 Create a 1D array](#21-create-a-1d-array)
+    - [2.2 Multi-dimensional matrix](#22-multi-dimensional-matrix)
+    - [2.3 Indexing and slicing](#23-indexing-and-slicing)
+    - [2.4 Basic statistics](#24-basic-statistics)
+    - [2.5 Axis-wise operations](#25-axis-wise-operations)
+  - [3. Dictionaries](#3-dictionaries)
+    - [3.1 Creating a dictionary](#31-creating-a-dictionary)
+    - [3.2 Accessing elements in a dictionary](#32-accessing-elements-in-a-dictionary)
+  - [4. Loops](#4-loops)
+    - [4.1 `for` loops](#41-for-loops)
+    - [4.2 `while` loops](#42-while-loops)
+    - [4.3 `break` and `continue`](#43-break-and-continue)
 
 ## 0. Overview
 
 In this lab, you will learn more Python syntax. We will cover the essential concepts of Python:
 
 - Lists
+
+- NumPy Array
 
 - Dictionaries
 
@@ -138,9 +146,250 @@ print(letters[1:-1]) # ['b', 'c', 'd']
 
 ([Back to top](#apsc-5984-lab-3-python-basics-ii))
 
-## 2. Dictionaries
+## 2. NumPy Array
 
-### 2.1 Creating a dictionary
+Numpy is one of the mostly used Python library in data sciences. It provides an versatile interface for users to manipulate multi-dimensional arrays, particularlly for image data.
+Practically, we use `np` as an aliase name for the NumPy library. But the aliase can also be other arbitrary names.
+
+```Python
+import numpy as np
+np.__version__
+# '1.23.1'
+```
+
+### 2.1 Create a 1D array
+
+Put a list into `np.array()` to create a 1D numpy array.
+(<https://numpy.org/doc/stable/reference/generated/numpy.array.html>)
+
+```Python
+ls_1d = [1, 2, 3]
+np_1d = np.array(ls_1d)
+
+print(ls_1d)
+# [1, 2, 3]
+print(np_1d)
+# array([1 2 3])
+```
+
+All-zero or all-one array can be created by `np.zeros()` and `np.ones()`.
+(<https://numpy.org/doc/stable/reference/generated/numpy.zeros.html>)
+(<https://numpy.org/doc/stable/reference/generated/numpy.ones.html>)
+
+```Python
+np.zeros(3)
+# array([0., 0., 0.])
+np.ones(3)
+# array([1., 1., 1.])
+```
+
+Create an arithmetic sequence:
+`np.arange()` creates a sequence defined by an interval.
+(<https://numpy.org/doc/stable/reference/generated/numpy.arange.html>)
+
+`np.linespace()` creates a sequence defined by a size.
+(<https://numpy.org/doc/stable/reference/generated/numpy.linspace.html>)
+
+```Python
+np.arange(1, 10, 2)
+# array([1, 3, 5, 7, 9])
+np.linspace(1, 10, 5)
+# array([ 1.  ,  3.25,  5.5 ,  7.75, 10.  ])
+```
+
+Challenge: Create an array with the same elements `[5, 10, 15, 20]` using two different functions: `np.linspace()` and `np.arange()`
+
+```Python
+array_A = np.arange(5, 21, 5)
+array_B = np.linspace(5, 20, 4)
+print(array_A)
+# array([ 5, 10, 15, 20])
+print(array_B)
+# array([ 5., 10., 15., 20.])
+```
+
+### 2.2 Multi-dimensional matrix
+
+Create a 2D array by putting a nested list into `np.array()`.
+
+```Python
+nested_list = [[1, 2, 3], [4, 5, 6]]
+np_2d = np.array(nested_list)
+print(np_2d)
+# array([[1, 2, 3],
+#        [4, 5, 6]])
+```
+
+You can check the dimension of an array by `np.shape()`.
+(<https://numpy.org/doc/stable/reference/generated/numpy.shape.html>)
+
+In this example, the matrix has two rows and three columns:
+
+```Python
+np.shape(np_2d)
+# (2, 3)
+```
+
+Same rule applies to all-zero or all-one matrix:
+
+```Python
+np.zeros((2, 3))
+# array([[0., 0., 0.],
+#        [0., 0., 0.]])
+np.ones((2, 3))
+# array([[1., 1., 1.],
+#        [1., 1., 1.]])
+```
+
+Reshape an array by `np.reshape()` and `np.flatten()`.
+(<https://numpy.org/doc/stable/reference/generated/numpy.reshape.html>)
+(<https://numpy.org/doc/stable/reference/generated/numpy.flatten.html>)
+
+```Python
+np_1d = np.arange(1, 7)
+print(np_1d)
+# array([1, 2, 3, 4, 5, 6])
+np_2d = np_1d.reshape(2, 3)
+print(np_2d)
+# array([[1, 2, 3],
+#        [4, 5, 6]])
+print(np_2d.flatten())
+# array([1, 2, 3, 4, 5, 6])
+```
+
+Practice with a 3D-array:
+
+```Python
+np_3d = np.arange(1, 13).reshape(2, 2, 3)
+print(np_3d)
+# array([[[ 1,  2,  3],
+#         [ 4,  5,  6]],
+#        [[ 7,  8,  9],
+#         [10, 11, 12]]])
+np_1d = np_3d.flatten()
+print(np_1d)
+# array([ 1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12])
+```
+
+### 2.3 Indexing and slicing
+
+Indexing and slicing in `numpy` are the same as in `list`. Let's create 2D array first:
+
+```Python
+np_2d = np.linspace(1, 30, 30).reshape((5, 6))
+print(np_2d.shape)
+# (5, 6)
+print(np_2d)
+# array([[ 1.,  2.,  3.,  4.,  5.,  6.],
+#        [ 7.,  8.,  9., 10., 11., 12.],
+#        [13., 14., 15., 16., 17., 18.],
+#        [19., 20., 21., 22., 23., 24.],
+#        [25., 26., 27., 28., 29., 30.]])
+```
+
+Get the first column:
+
+```Python
+np_2d[:, 0]
+# array([ 1.,  7., 13., 19., 25.])
+```
+
+Get the second and third rows:
+
+```Python
+np_2d[1:3, :]
+# array([[ 7.,  8.,  9., 10., 11., 12.],
+#        [13., 14., 15., 16., 17., 18.]])
+np_2d[[1, 2], :]
+# array([[ 7.,  8.,  9., 10., 11., 12.],
+#        [13., 14., 15., 16., 17., 18.]])
+```
+
+Negative indexing is also aupported:
+
+```Python
+np_2d[-2:, :]
+# array([[19., 20., 21., 22., 23., 24.],
+#        [25., 26., 27., 28., 29., 30.]])
+```
+
+Get one every two columns:
+
+```Python
+np_2d[:, ::2]
+# array([[ 1.,  3.,  5.],
+#        [ 7.,  9., 11.],
+#        [13., 15., 17.],
+#        [19., 21., 23.],
+#        [25., 27., 29.]])
+```
+
+### 2.4 Basic statistics
+
+`numpy` provides a lot of useful functions for basic statistics. Here are some examples:
+
+```Python
+np_2d = np.linspace(1, 30, 30).reshape((5, 6))
+print(np_2d)
+# array([[ 1.,  2.,  3.,  4.,  5.,  6.],
+#        [ 7.,  8.,  9., 10., 11., 12.],
+#        [13., 14., 15., 16., 17., 18.],
+#        [19., 20., 21., 22., 23., 24.],
+#        [25., 26., 27., 28., 29., 30.]])
+print(np.mean(np_2d))
+# 15.5
+print(np.median(np_2d))
+# 15.5
+print(np.std(np_2d))
+# 8.65544144839919
+print(np.var(np_2d))
+# 74.91666666666667
+print(np.min(np_2d))
+# 1.0
+print(np.max(np_2d))
+# 30.0
+print(np.sum(np_2d))
+# 465.0
+```
+
+### 2.5 Axis-wise operations
+
+Sometimes, we want to perform operations on a specific axis, such as the mean of each column. We can use `axis` argument to specify the axis. `axis=0` means the first axis (rows), `axis=1` means the second axis (columns), and so on. Here is an example:
+
+```Python
+np_3d = np.linspace(1, 30, 30).reshape((3, 2, 5))
+print(np_3d)
+# array([[[ 1.,  2.,  3.,  4.,  5.],
+#         [ 6.,  7.,  8.,  9., 10.]],
+#        [[11., 12., 13., 14., 15.],
+#         [16., 17., 18., 19., 20.]],
+#        [[21., 22., 23., 24., 25.],
+#         [26., 27., 28., 29., 30.]]])
+print(np.mean(np_3d, axis=0))
+# array([[11., 12., 13., 14., 15.],
+#        [16., 17., 18., 19., 20.]])
+print(np.mean(np_3d, axis=1))
+# array([[ 3.5,  4.5,  5.5,  6.5,  7.5],
+#        [13.5, 14.5, 15.5, 16.5, 17.5],
+#        [23.5, 24.5, 25.5, 26.5, 27.5]])
+print(np.mean(np_3d, axis=2))
+# array([[ 3.,  8.],
+#        [13., 18.],
+#        [23., 28.]])
+```
+
+Multiple axes can be specified at the same time:
+
+```Python
+print(np.mean(np_3d, axis=(0, 2)))
+# array([12., 17., 22., 27.])
+```
+
+([Back to top](#apsc-5984-lab-3-python-basics-ii))
+
+## 3. Dictionaries
+
+### 3.1 Creating a dictionary
 
 A dictionary is a collection of key-value pairs. Unlike a list, where items are accessed by their position, items in a dictionary are accessed via keys. A key's value can be a number, a string, a list, or even another dictionary. In Python, a dictionary is defined by curly brackets `{}`. Here is an example:
 
@@ -170,7 +419,7 @@ dict_int = {3: "three", 10: "ten", 2: "two"}
 print(dict_int) # {3: 'three', 10: 'ten', 2: 'two'}
 ```
 
-### 2.2 Accessing elements in a dictionary
+### 3.2 Accessing elements in a dictionary
 
 You can access the value of a key by using the key name. For example, you can access the age of John by using `person_age['John']` or `person_age.get('John')`:
 
@@ -215,11 +464,11 @@ else:
 
 ([Back to top](#apsc-5984-lab-3-python-basics-ii))
 
-## 3. Loops
+## 4. Loops
 
 It is quite a hassle to repeatly access elements in a list or a dictionary. In this section, we will introduce how to use `for` loops and `while` loops in Python. These two types of loops are very useful to interact with these data structures.
 
-### 3.1 `for` loops
+### 4.1 `for` loops
 
 A `for` loop is used to iterate over a sequence (e.g., a list, a dictionary, or a string). There are two components in a `for` statement: `variable` and `iterators`. Let's take a look at an example:
 
@@ -294,7 +543,7 @@ for key, value in person_age.items():
 # David 40
 ```
 
-### 3.2 `while` loops
+### 4.2 `while` loops
 
 A `while` loop is used to repeat a block of code until a condition is met. Again, let's take a look at an example:
 
@@ -334,7 +583,7 @@ else:
 
 A quick summary: In practice, there is no strict rule to decide whether to use `for` loops or `while` loops. If you need to iterate over a sequence, a `for` loop is usually the better choice. If you need to repeat a block of code until a condition is met, a while `loop` could.
 
-### 3.3 `break` and `continue`
+### 4.3 `break` and `continue`
 
 In the above cases, the `for` loop and `while` loop will iterate over the entire sequence or continue to execute the code block until the condition is met. However, there are cases that you want to stop the iteration or skip the current iteration. In this case, you can use the `break` and `continue` statements.
 
