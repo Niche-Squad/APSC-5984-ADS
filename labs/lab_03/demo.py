@@ -49,7 +49,3 @@ mat_3d.mean(axis=(0, 1))
 mat_3d.mean(axis=(0, 2))
 
 # dictionary
-person_age = {"John": 20, "Mary": 25, "Michael": 30, "Elizabeth": 35}
-
-# remove an element
-person_age.pop("Mary")
