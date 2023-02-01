@@ -4,13 +4,14 @@ Due: 2023-02-13 (Monday) 23:59:59
 
 - [APSC-5984 Lab 4: File system](#apsc-5984-lab-4-file-system)
   - [0. Overview](#0-overview)
-  - [1 Working directly (WD)](#1-working-directly-wd)
-    - [1.1 `os.getcwd()`](#11-osgetcwd)
-    - [1.2 `os.listdir()`](#12-oslistdir)
-    - [1.3 `os.chdir()`](#13-oschdir)
-  - [2. Path](#2-path)
-    - [2.1 Absolute path vs. relative path](#21-absolute-path-vs-relative-path)
-    - [2.2 Navigation using `os.path.join()`](#22-navigation-using-ospathjoin)
+  - [1. Path](#1-path)
+    - [1.1 Root directory](#11-root-directory)
+    - [1.2 Slash '/'](#12-slash-)
+    - [1.3 Working directory (WD)](#13-working-directory-wd)
+    - [1.4 Relative path vs. absolute path](#14-relative-path-vs-absolute-path)
+  - [2. Path implementation](#2-path-implementation)
+    - [2.1 Shell](#21-shell)
+    - [2.2 Python](#22-python)
   - [3. Interacting with files](#3-interacting-with-files)
     - [3.1 Create a file (mode `w`)](#31-create-a-file-mode-w)
     - [3.2 Append to a file (mode `a`)](#32-append-to-a-file-mode-a)
@@ -25,7 +26,97 @@ Due: 2023-02-13 (Monday) 23:59:59
 
 In this lab, you will learn basic Python commands to navigate the file system and manipulate files using the `os` library. Coupling the basic knowledge of interacting with the file system, you will be able to read and write data from/to files through Python.
 
-## 1 Working directly (WD)
+## 1. Path
+
+A path is a string that represents the location of a file or folder in the file system. Example path strings are `/home/niche/folder_1`.
+
+### 1.1 Root directory
+
+The root directory is the top-most directory in the file system. It is represented by a single slash `/` at the beginning of the path.
+In the example `/home/niche/folder_1`, the root directory contains `home` directory.`folder_1` directory.
+
+### 1.2 Slash '/'
+
+A slash `/` other than the root directory is used to separate the directories in a path and to represent the parent-child relationship between directories. For example, `home` directory is the parent directory of `niche` directory.
+
+### 1.3 Working directory (WD)
+
+The working directory (WD) is a directory where you are currently working in. You can also understand it as your current location in the file system.
+
+### 1.4 Relative path vs. absolute path
+
+An absolute path always starts with the root directory `/`, while a relative path always starts with the current WD without `/` at the beginning.
+
+## 2. Path implementation
+
+For example, let's structure the file system as follows:
+
+```bash
+root
+└──── home
+        └── niche
+            ├── folder_1
+            ├── file_1.txt
+            └── file_2.txt
+```
+
+### 2.1 Shell
+
+Common commands you will use:
+
+- `ls`: list the files and folders in the current WD.
+- `pwd`: print the current WD.
+- `cd`: change the current WD.
+- `mkdir`: create a new directory.
+- `.`: an alias for the current WD.
+- `..`: an alias for the parent directory of the current WD.
+- Tilde sign `~` : an alias for the home directory of the current user.
+
+Assume you are in the root directory `/`, you can use `pwd` to check your current location.
+
+```bash
+pwd
+# output: /
+```
+
+Use `ls` to list the files and folders in the current WD.
+
+```bash
+ls
+# output: home
+```
+
+If you want to change your current location to the `niche` directory:
+
+```bash
+cd home/niche
+pwd
+# output: /home/niche
+```
+
+Go back to the root directory `/`:
+
+```bash
+cd ../..
+pwd
+# output: /
+```
+
+`/home/<user_name>` is usually the home directory of the current user. You can use `~` to represent it.
+
+```bash
+cd ~
+pwd
+# output: /home/niche
+```
+
+### 2.2 Python
+
+In Python, to interact with the file system, you need to import the `os` library.
+
+```python
+import os
+```
 
 Here are the common Python `os` methods to interact with the file system:
 
@@ -35,33 +126,21 @@ Here are the common Python `os` methods to interact with the file system:
 
 - `os.chdir()`: change the WD
 
-Before you can access to the methods, remember to import the `os` library:
-
-```python
-import os
-```
-
-### 1.1 `os.getcwd()`
-
-To know where your current location, which is formally known as working directory (WD), is in the file system, you can use `os.getcwd()` command to print the path of the WD. `getcwd()` is an abbreviation of "get current working directory".
+`os.getcwd()` is equivalent to the `pwd` command in shell.
 
 ```python
 os.getcwd()
 # output: '/home/niche'
 ```
 
-### 1.2 `os.listdir()`
-
-You can use `os.listdir()` to list all the files and folders in the current WD. It is commonly used when you want to know your next step (e.g., which file to open) while you are exploring the file system.
+`os.listdir()` is equivalent to the `ls` command in shell.
 
 ```python
 os.listdir()
-# output: ['file_1.txt', 'file_2.txt', 'folder_1', 'folder_2']
+# output: ['file_1.txt', 'file_2.txt', 'folder_1']
 ```
 
-### 1.3 `os.chdir()`
-
-After knowning the current accessible folders, you can use `os.chdir()` to set the WD to a new folder. `chdir()` is an abbreviation of "change directory".
+`os.chdir()` is equivalent to the `cd` command in shell.
 
 ```python
 os.chdir('/home/niche/folder_1')
@@ -69,40 +148,13 @@ os.getcwd()
 # output: '/home/niche/folder_1'
 ```
 
-## 2. Path
-
-A path is a string that represents the location of a file or folder in the file system. An example is the WD path you obtained from the `os.getcwd()`. There are several ways to interact with a path in Python:
-
-- Absolute path: starts with the root directory `/`.
-- Relative path: starts with the current WD.
-- Tilde sign `~` : an alias for the home directory of the current user.
-- One-dot sign `.` : an alias for the current WD.
-- Double-dot sign `..` : an alias for the parent directory of the current WD.
-- `os.path.join()`: join multiple paths together.
-
-### 2.1 Absolute path vs. relative path
-
-So far, the paths we printed were all absolute paths, where they starts with the root directory `/`. However, you can also use relative path to navigate the file system. For example, if you are in the folder `/home/niche`, you can use `os.chdir('folder_1')` to go to the subfolder `/home/niche/folder_1`. Here `folder_1` is the relative path to the current WD `/home/niche`.
+`..` also works in Python.
 
 ```python
+os.chdir('../..')
 os.getcwd()
-# output: '/home/niche'
-os.chdir('folder_1')
-os.getcwd()
-# output: '/home/niche/folder_1'
+# output: '/home'
 ```
-
-Similarly, if you are in the subfolder `/home/niche/folder_1`, you can use a double-dot symbol `..` to refer to its parent folder `/home/niche`. For example, you can use `os.chdir('..')` to go back to the parent folder `/home/niche`.
-
-```python
-os.getcwd()
-# output: '/home/niche/folder_1'
-os.chdir('..')
-os.getcwd()
-# output: '/home/niche'
-```
-
-### 2.2 Navigation using `os.path.join()`
 
 The `os.path.join()` method is a convenient way to join multiple paths together. It is recommended to use over explicitly typing the path in a string is because it is OS-agnostic. For example, if you are using Windows, the path separator is `\` instead of `/`. Using `os.path.join()` will automatically adjust the path separator based on your OS.
 
