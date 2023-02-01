@@ -37,3 +37,19 @@ mat_x.mean(axis=0)
 
 # compressing (summarizing) the info from columns (axis=1)
 mat_x.mean(axis=1)
+
+# 3d example
+mat_3d = np.arange(1, 37).reshape(2, 3, 6)
+
+mat_3d.mean(axis=0)
+mat_3d.mean(axis=1)
+mat_3d.mean(axis=2)
+
+mat_3d.mean(axis=(0, 1))
+mat_3d.mean(axis=(0, 2))
+
+# dictionary
+person_age = {"John": 20, "Mary": 25, "Michael": 30, "Elizabeth": 35}
+
+# remove an element
+person_age.pop("Mary")

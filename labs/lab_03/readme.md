@@ -15,7 +15,9 @@ Due: 2023-02-06 (Monday) 23:59:59
     - [2.5 Axis-wise operations](#25-axis-wise-operations)
   - [3. Dictionaries](#3-dictionaries)
     - [3.1 Creating a dictionary](#31-creating-a-dictionary)
-    - [3.2 Accessing elements in a dictionary](#32-accessing-elements-in-a-dictionary)
+    - [3.2 Insertion: add a new key-value pair](#32-insertion-add-a-new-key-value-pair)
+    - [3.3 Lookup: Accessing elements in a dictionary](#33-lookup-accessing-elements-in-a-dictionary)
+    - [3.4 Deletion: remove a key-value pair](#34-deletion-remove-a-key-value-pair)
   - [4. Loops](#4-loops)
     - [4.1 `for` loops](#41-for-loops)
     - [4.2 `while` loops](#42-while-loops)
@@ -398,7 +400,11 @@ person_age = {'John': 20, 'Mary': 25, 'Michael': 30, 'Elizabeth': 35}
 print(person_age) # {'John': 20, 'Mary': 25, 'Michael': 30, 'Elizabeth': 35}
 ```
 
-In this case, the keys are `John`, `Mary`, `Michael`, and `Elizabeth`, and the values are 20, 25, 30, and 35, respectively. To add a new key-value pair to a dictionary, you have two options. First, you can use the `update` method. For example, you can add a new key-value pair to the dictionary `person_age` by using `person_age.update({'David': 40})`:
+In this case, the keys are `John`, `Mary`, `Michael`, and `Elizabeth`, and the values are 20, 25, 30, and 35, respectively.
+
+### 3.2 Insertion: add a new key-value pair
+
+To add a new key-value pair to a dictionary, you have two options. First, you can use the `update` method. For example, you can add a new key-value pair to the dictionary `person_age` by using `person_age.update({'David': 40})`:
 
 ```Python
 person_age.update({'David': 40})
@@ -419,13 +425,13 @@ dict_int = {3: "three", 10: "ten", 2: "two"}
 print(dict_int) # {3: 'three', 10: 'ten', 2: 'two'}
 ```
 
-### 3.2 Accessing elements in a dictionary
+### 3.3 Lookup: Accessing elements in a dictionary
 
 You can access the value of a key by using the key name. For example, you can access the age of John by using `person_age['John']` or `person_age.get('John')`:
 
 ```Python
 john_age = person_age['John']
-print(john_age) # 20\
+print(john_age) # 20
 john_age = person_age.get('John')
 print(john_age) # 20
 ```
@@ -460,6 +466,20 @@ if 'David' in person_age:
     print("David exists in the dictionary person_age")
 else:
     print("David does not exist in the dictionary person_age")
+```
+
+### 3.4 Deletion: remove a key-value pair
+
+You can remove any key-value pair with the `del` statement.
+
+```Python
+del person_age['Mary']
+```
+
+Another way is to use `pop()` method. This method will remove the key-value pair and return the value of the key.
+
+```Python
+person_age.pop('Mary')
 ```
 
 ([Back to top](#apsc-5984-lab-3-python-basics-ii))
