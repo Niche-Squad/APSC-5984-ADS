@@ -7,7 +7,6 @@ ls_x[1:-1]  # equivalent to ls_x[1:5]
 # target: 3, 4, 6, "abc"
 
 # numpy
-from os import listxattr
 import numpy as np
 
 np.__version__
