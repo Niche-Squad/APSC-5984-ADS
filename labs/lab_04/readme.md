@@ -12,8 +12,17 @@ Due: 2023-02-13 (Monday) 23:59:59
   - [2. Path implementation](#2-path-implementation)
     - [2.1 Shell](#21-shell)
     - [2.2 Python](#22-python)
+    - [2.3 Exercise](#23-exercise)
+      - [2.3.1 Create a base directory](#231-create-a-base-directory)
+      - [2.3.2 Change the WD](#232-change-the-wd)
+      - [2.3.3 Create a new directory](#233-create-a-new-directory)
+      - [2.3.4 Use relative path to change the WD](#234-use-relative-path-to-change-the-wd)
+      - [2.3.5 Use relative path to create a new directory](#235-use-relative-path-to-create-a-new-directory)
   - [3. Interacting with files](#3-interacting-with-files)
     - [3.1 Create a file (mode `w`)](#31-create-a-file-mode-w)
+    - [3.1.1 Write to a file](#311-write-to-a-file)
+    - [3.1.2 End of line (EOL)](#312-end-of-line-eol)
+    - [3.1.3 Close the file and `with` statement](#313-close-the-file-and-with-statement)
     - [3.2 Append to a file (mode `a`)](#32-append-to-a-file-mode-a)
     - [3.3 Read a file (mode `r`)](#33-read-a-file-mode-r)
   - [4. String processing](#4-string-processing)
@@ -21,6 +30,11 @@ Due: 2023-02-13 (Monday) 23:59:59
     - [4.2 String split](#42-string-split)
     - [4.3 String replace](#43-string-replace)
     - [4.4 Regular expression (RE)](#44-regular-expression-re)
+      - [4.4.1 Find all numbers](#441-find-all-numbers)
+      - [4.4.2 Find numbers that match a string pattern](#442-find-numbers-that-match-a-string-pattern)
+      - [4.4.3 Greedy vs. non-greedy matching](#443-greedy-vs-non-greedy-matching)
+      - [4.4.4 Exclusions](#444-exclusions)
+      - [4.4.5 Another example](#445-another-example)
 
 ## 0. Overview
 
@@ -110,6 +124,16 @@ pwd
 # output: /home/niche
 ```
 
+Create a new directory `folder_1` in the current WD:
+
+```bash
+ls
+# output: file_1.txt file_2.txt folder_1
+mkdir folder_2
+ls
+# output: file_1.txt file_2.txt folder_1 folder_2
+```
+
 ### 2.2 Python
 
 In Python, to interact with the file system, you need to import the `os` library.
@@ -125,6 +149,10 @@ Here are the common Python `os` methods to interact with the file system:
 - `os.listdir()`: list the content of a directory (default: WD)
 
 - `os.chdir()`: change the WD
+
+- `os.mkdir()`: create a new directory
+
+- `os.path.join()`: join multiple path strings into a single path string
 
 `os.getcwd()` is equivalent to the `pwd` command in shell.
 
@@ -156,6 +184,17 @@ os.getcwd()
 # output: '/home'
 ```
 
+`os.mkdir()` is equivalent to the `mkdir` command in shell.
+
+```python
+os.chdir('/home/niche')
+os.listdir()
+# output: ['file_1.txt', 'file_2.txt', 'folder_1']
+os.mkdir('folder_2')
+os.listdir()
+# output: ['file_1.txt', 'file_2.txt', 'folder_1', 'folder_2']
+```
+
 The `os.path.join()` method is a convenient way to join multiple paths together. It is recommended to use over explicitly typing the path in a string is because it is OS-agnostic. For example, if you are using Windows, the path separator is `\` instead of `/`. Using `os.path.join()` will automatically adjust the path separator based on your OS.
 
 ```python
@@ -163,6 +202,53 @@ os.path.join('home', 'niche', 'folder_1')
 # output: 'home/niche/folder_1' if you are using Linux
 # output: 'home\\niche\\folder_1' if you are using Windows
 ```
+
+### 2.3 Exercise
+
+We will create a folder structure as follows:
+
+```bash
+exercise
+└───── src
+        ├── module_1
+        ├── module_2
+        └── module_3
+└───── data
+        └── trial_A
+                ├── 2022_03_02
+                ├── 2022_03_03
+                └── 2022_03_04
+        └── trial_B
+└───── out
+```
+
+#### 2.3.1 Create a base directory
+
+Create a new directory named `exercise` and change the WD to the `exercise` directory.
+
+#### 2.3.2 Change the WD
+
+Create a new directory named `src` in the `exercise` directory.
+
+Change the WD to the `src` directory.
+
+#### 2.3.3 Create a new directory
+
+Create new directories named `module_1`, `module_2`, and `module_3` in the `src` directory.
+
+#### 2.3.4 Use relative path to change the WD
+
+Change the WD to the `exercise` directory.
+
+#### 2.3.5 Use relative path to create a new directory
+
+Create new directories named `data`, `data/trial_A`, and `data/trial_B` in the `exercise` directory.
+
+Change the WD to the `data/trial_A` directory.
+
+Create new directories named `2022_03_02`, `2022_03_03`, and `2022_03_04` in the `exercise/data/trial_A` directory.
+
+While in the `tiral_A` directory, use relative path to create a new directory named `out` in the `exercise` directory.
 
 ## 3. Interacting with files
 
@@ -183,37 +269,159 @@ f = open('file.txt', 'w')
 f.close()
 ```
 
-We always need to use `close()` to release the file resource after we are done with the file. Otherwise, the file will be locked and you will not be able to access it. Let's try writing something in this file:
+### 3.1.1 Write to a file
+
+Let's try writing something in this file using the `write()` method:
 
 ```python
 f = open('file.txt', 'w')
 f.write('Hello world!\n')
-f.write('This ia the second line\n')
-f.write('This ia the third line\n')
+f.write('This is the second line\n')
+f.write('This is the third line\n')
 f.close()
 ```
+
+And here is the file content:
+
+```shell
+cat file.txt
+# Hello world!
+# This is the second line
+# This is the third line
+```
+
+### 3.1.2 End of line (EOL)
 
 It is noteworthy that the `write()` method will not automatically add an end of line (EOL) character (`\n`) at the end of the line. Therefore, we need to add it manually.
 
-If you open the file `file.txt` in a text editor, you should see the following content:
-
-```text
-Hello world!
-This ia the second line
-This ia the third line
-```
-
-### 3.2 Append to a file (mode `a`)
-
-The `a` mode is similar to the `w` mode, except that it will append the content to the end of the file instead of overwriting the existing content. Let's try appending something to the file `file.txt`:
+Here is an example not including the EOL character:
 
 ```python
-f = open('file.txt', 'a')
-f.write('This ia the fourth line\n')
+f = open('file.txt', 'w')
+f.write('Hello world!')
+f.write('This is the second line')
+f.write('This is the third line')
 f.close()
 ```
 
-Check the file again to see if the content is appended as expected.
+The file content:
+
+```shell
+cat file.txt
+# Hello world!This ia the second lineThis ia the third line
+```
+
+### 3.1.3 Close the file and `with` statement
+
+We always want to use `close()` to release the file resource after we are done with the file. Let's see what happens if we do not use `close()`:
+
+```python
+f1 = open('file.txt', 'w')
+f1.write("Hello World! from f1\n")
+```
+
+Use shell to check the file content:
+
+```shell
+cat file.txt
+```
+
+The file will only be created but not written anything. This is because the file resource is not released until the program is terminated. Therefore, we need to use `close()` to let the computer know that we are done with the file and the content can be saved.
+
+In Python, we can use `with` statement to automatically close the file
+
+```python
+with open('file.txt', 'w') as f1:
+    f1.write("Hello World! from f1\n")
+```
+
+Check the file content again:
+
+```shell
+cat file.txt
+# Hello World! from f1
+```
+
+Here is another case without using `close()` properly where you have more than two file streams opened at the same time:
+
+```python
+# create the first file stream
+f1 = open('file.txt', 'w')
+f1.write("--- F1 ---\n")
+# create the second file stream
+f2 = open('file.txt', 'w')
+f2.write("--- F2F2F2 ---\n")
+# close the first file stream
+f1.close()
+```
+
+Check the file content:
+
+```shell
+cat file.txt
+# --- F1 ---
+```
+
+Close the second file stream:
+
+```python
+# close the second file stream
+f2.close()
+```
+
+Check the file content again:
+
+```shell
+cat file.txt
+# --- F2F2F2 ---
+```
+
+You will find that the content of the file is overwritten by the second file stream.
+
+### 3.2 Append to a file (mode `a`)
+
+The `a` mode is similar to the `w` mode, except that it will append the content to the end of the file instead of overwriting the existing content.
+
+Let's first create a file named `file.txt`:
+
+```python
+f = open('file.txt', 'w')
+f.write('Hello world!\n')
+f.write('This is the second line\n')
+f.write('This is the third line\n')
+f.close()
+```
+
+And we can show the content in Shell:
+
+```shell
+cat file.txt
+# Hello world!
+# This is the second line
+# This is the third line
+```
+
+Now, let's append some content to the file:
+
+```python
+f = open('file.txt', 'a')
+f.write('This is the fourth line\n')
+f.write('This is the fifth line\n')
+f.close()
+```
+
+Check the file content:
+
+```shell
+cat file.txt
+# Hello world!
+# This is the second line
+# This is the third line
+# This is the fourth line
+# This is the fifth line
+```
+
+You should notice that the first three lines were not overwritten by the new content.
 
 ### 3.3 Read a file (mode `r`)
 
@@ -235,7 +443,7 @@ f.close()
 You might notice that the entire file content, including the EOL characters `\n`, is stored in the variable `content`. This approach works fine when ones want to access the raw information, but it is not covenient when we want to process the content line by line. Hence, we can use the `readlines()` method:
 
 ```python
-f = open('file.txt', 'r')s
+f = open('file.txt', 'r')
 lines = f.readlines()
 print(lines)
 f.close()
@@ -251,11 +459,11 @@ len(lines)
 
 ## 4. String processing
 
-String processing is an essential skill to extract meaningful information from a text-based file. In this section, we will go through some common string processing methods.
+String processing is an essential skill to extract meaningful information from a text-based file. In this section, we will go through common string processing methods.
 
 ### 4.1 String slicing
 
-We have introduced the data type `string` and the related operators the previous lab. In this section, you will apply the operation to a list of strings. First, let's create an example list:
+We have introduced the data type `string` and the related operators in the previous lab. In this section, you will apply the operation to a list of strings. First, let's create an example list of filenames:
 
 ```python
 file_list = [
@@ -267,7 +475,7 @@ file_list = [
             "2022/10/08_trialC_trt2.txt"]
 ```
 
-In this example, you are provided with a list of file names. You might soon notice that the file names are coded in the following format: `YYYY/MM/DD_trialX_trtY.txt`. In this practice, we want to extract the date, trial, and treatment information from the provided list.
+You might soon notice that the file names are coded in the following format: `YYYY/MM/DD_trialX_trtY.txt`. In this practice, we want to extract the date, trial, and treatment information from each filename.
 
 We know that the file extension names are always occupied the last three characters of the file. We can use the indexing operation we learned earlier to extract the extension name:
 
@@ -292,25 +500,41 @@ In this example, the `file` variable is assigned to each element (file name) in 
 
 ### 4.2 String split
 
-Now, we want to break each string to extract other information such as trials and treatments. We noticed that they are separated by the underscore `_`. We can use the `split()` method that takes the separator (i.e., `_`) as the argument to split the string:
+Now, we want to break down each string to smaller pieces of information such as trials and treatments. We noticed that they were separated by the underscore `_`. Hence, we can use the `split()` method that takes the separator (i.e., `_`) as the argument to split the string:
 
 ```python
-filename = file_list[0]
+filename = file_list[0] # '2022/09/08_trialA_trt1.txt'
 filename.split('_')
 # output: ['2022/09/08', 'trialA', 'trt1.txt']
 ```
 
-We can apply the same logic to the first element of the string to extract date information:
+We can apply the same logic to the first substring `2022/09/08` to extract detailed date information:
 
 ```python
-filename = file_list[0]
+filename = file_list[0] # '2022/09/08_trialA_trt1.txt'
 elements = filename.split('_')
+print(elements)
+# output: ['2022/09/08', 'trialA', 'trt1.txt']
 date = elements[0]
 print(date)
 # output: '2022/09/08'
+
 yyyymmdd = date.split("/")
 print(yyyymmdd)
 # output: ['2022', '09', '08']
+
+year = yyyymmdd[0]
+month = yyyymmdd[1]
+day = yyyymmdd[2]
+print("File name = " + filename)
+print("Year = " + year)
+print("Month = " + month)
+print("Day = " + day)
+# output:
+# File name = 2022/09/08_trialA_trt1.txt
+# Year = 2022
+# Month = 09
+# Day = 08
 ```
 
 ### 4.3 String replace
@@ -318,8 +542,10 @@ print(yyyymmdd)
 From the split result, we can see that the treatment information is not in the format we wnat. Eech substring `trt1.txt` still tails with the file extension name `.txt`.
 
 ```python
-filename = file_list[0]
+filename = file_list[0] # '2022/09/08_trialA_trt1.txt'
 elements = filename.split('_')
+print(elements)
+# output: ['2022/09/08', 'trialA', 'trt1.txt']
 trt = elements[2]
 print(trt)
 # output: 'trt1.txt'
@@ -343,7 +569,7 @@ print(new_trt)
 
 ### 4.4 Regular expression (RE)
 
-If the string pattern is more complicated than position-based slicing or replacement, you want to use regular expression to implement a more flexible pattern recognition. We will introduce the `re` module that provides a set of methods to implement regular expression.
+Regular expression (RE) is a more flexible pattern recognition method than simple string slicing or replacement. We will introduce the `re` module that provides a set of methods to implement regular expression.
 
 As always, we need to import the `re` module first:
 
@@ -364,9 +590,12 @@ The `pattern` is the regular expression pattern, and the `string` is the string 
 | `.` | Matches any character except newline. |
 | `^` | Matches the start of the string. |
 | `$` | Matches the end of the string or just before the newline at the end of the string. |
-| `*` | Matches 0 or more (greedy) repetitions of the preceding RE. |
-| `+` | Matches 1 or more (greedy) repetitions of the preceding RE. |
+| `*` | Matches 0 or more repetitions (greedy) of the preceding RE. |
+| `+` | Matches 1 or more repetitions (greedy) of the preceding RE. |
 | `?` | Matches 0 or 1 (greedy) of the preceding RE. |
+| `*?` | Matches 0 or more repetitions (non-greedy) of the preceding RE. |
+| `+?` | Matches 1 or more repetitions (non-greedy) of the preceding RE. |
+| `??` | Matches 0 or 1 (non-greedy) of the preceding RE. |
 | `\w` | Matches any alphanumeric character including the underscore. |
 | `\W` | Matches any non-alphanumeric character. |
 | `\d` | Matches any numeric digit. |
@@ -377,9 +606,108 @@ The `pattern` is the regular expression pattern, and the `string` is the string 
 | `{m}` | Matches exactly m copies of the previous RE. |
 | `{m,n}` | Matches from m to n (inclusive) copies of the previous RE. |
 
-It is toally normal to get confused by the table above when you first see it. Don't worry, we will go through some examples to understand how to use regular expression.
+It is toally normal to get confused by the table above when you first see it. Don't worry, we will go through some examples to understand how RE works.
 
-Here is an example:
+#### 4.4.1 Find all numbers
+
+Example sentence from the USDA web page (<https://www.aphis.usda.gov/aphis/ourfocus/animalhealth/animal-disease-information/cattle-disease-information/cattle-surveillance>)
+
+```md
+From 2006 to 2015, the BSE Ongoing Surveillance Program tested approximately 40,000 samples per year.
+```
+
+Assign the sentence to a string variable and use RE to extract numbers:
+
+```python
+string = "From 2006 to 2015, the BSE Ongoing Surveillance Program tested approximately 40,000 samples per year."
+re.findall(r"\d+", string)
+# output: ['2006', '2015', '40', '000']
+```
+
+This example shows how to find all numbers in a string. We use `\d` to match any numeric digit, and `+` after that to match one or more copies of the preceding RE (i.e., `\d`).
+
+However, it is not an ideal result if we only want to extract the year information. We know that the year information is always a four-digit number. Hence, we can explicitly specify the number using `{m}`:
+
+```python
+re.findall(r"\d{4}", string)
+# output: ['2006', '2015']
+```
+
+#### 4.4.2 Find numbers that match a string pattern
+
+Here is another example sentence (<https://www.aphis.usda.gov/animal_health/animal_diseases/brucellosis/downloads/fpa-val-rpt.pdf>)
+
+``` md
+In fact, these samples had an average reading of 254 mP at the Texas laboratory compared to the average negative control reading of 88 mP. The FP also clearly identified the four sero-negative samples (samples 1, 7, 17, and 19) as negative.
+```
+
+If you want to extract each mP read, simply using `\d+` will not work as you will also get numbers about the sample id (e.g., 1, 7, 17, and 19).
+
+```python
+re.findall(r"\d+", string)
+# output: ['254', '88', '1', '7', '17', '19']
+```
+
+Here you want to add additional string pattern to narrow down the search:
+
+```python
+re.findall(r"\d+ mP", string)
+# output: ['254 mP', '88 mP']
+```
+
+or you can only keep the 3-digit number:
+
+```python
+re.findall(r"\d{3} mP", string)
+# output: ['254 mP']
+```
+
+#### 4.4.3 Greedy vs. non-greedy matching
+
+Let's take a look of this paragraph
+
+```md
+The FP for B. abortus relies on an O-polysaccharide from B. abortus that is covalently linked with a fluorescein isothiocyanate tracer molecule. Infected cattle were those from which B. abortus had been cultured from milk or tissues. Serum samples were also assayed from B. abortus strain 19 vaccinated cattle at various times post vaccination. The FP test was shown to accurately classify uninfected cattle as negative, infected cattle as positive, and strain 19 vaccinated cattle as negative.
+```
+
+Say we want to extract every sentence that contains the word "B. abortus". We can design a RE pattern like this:
+
+```python
+re.findall(r".*B\. abortus.*\.", string)
+# output: B. abortus relies on an ... cattle as negative.
+```
+
+Break down the RE pattern:
+
+- `B\. abortus`: match the word "B. abortus"
+- `.*`: match any character until it reaches a period `.`
+- `\.`: match the period `.`
+
+A `\` before the period `.` called an escape character. It is because `.` is a special character that represent any character in RE, and we want to match the period character itself.
+
+This search is a greedy search, as it will match as many characters as possible; such search will return the whole paragraph instead of sentences. To fix this, we can use a non-greedy search by adding a `?` after the `*`:
+
+```python
+re.findall(r".*?B. abortus.*?\.", string)
+# output [
+# 'The FP for B. abortus relies on an O-polysaccharide from B.',
+# ' abortus that is covalently linked with a fluorescein isothiocyanate tracer molecule. Infected cattle were those from which B. abortus had been cultured from milk or tissues.',
+# ' Serum samples were also assayed from B. abortus strain 19 vaccinated cattle at various times post vaccination.']
+```
+
+#### 4.4.4 Exclusions
+
+Ok, it seems closer to what we want. However, The first sentence that contains two "B. abortus" words confuses our search. We can further specify the context of the period `.` by excluding `B.` from the search:
+
+```python
+re.findall(r".*?B. abortus.*?[^B]\.", string)
+# output: [
+# 'The FP for B. abortus relies on an O-polysaccharide from B. abortus that is covalently linked with a fluorescein isothiocyanate tracer molecule.',
+# ' Infected cattle were those from which B. abortus had been cultured from milk or tissues.',
+# ' Serum samples were also assayed from B. abortus strain 19 vaccinated cattle at various times post vaccination.']
+```
+
+#### 4.4.5 Another example
 
 ```python
 filelines = [
@@ -389,7 +717,7 @@ filelines = [
     "treatment C: (2, 4), (1, 9, 8)"]
 ```
 
-The data `filelines` was intentionally made to be a little bit messy. We want to extract the treatment information in each pair of parenthesis.
+The data `filelines` was intentionally made to be a little bit messy. We want to extract the treatment information in each pair of parenthesis (e.g., `(1, 3)` and `(1, 9, 8)`):
 
 ```python
 trts = []
