@@ -53,7 +53,7 @@ All students are expected to maintain the highest standards of academic integrit
 | 2 | Coding environment | Variables; If-else statement | Python basics I |
 | 3 | List and Array | Dictionary and Loop | Python basics II |
 | 4 | File system | String processing | File system |
-| 5 | DataFrame basics | Tidy data | Pandas library |
+| 5 | DataFrame | Tidy data | Dataframe |
 | 6 | [No class] <br> Presidents' Day | Intro to database | Public datasets |
 | 7 | Grouping and summarizing | Multiple dataframes | More Pandas practices |
 | 8 | [No class] <br> Spring break | [No class] <br> Spring break | [No class] <br> Spring break |

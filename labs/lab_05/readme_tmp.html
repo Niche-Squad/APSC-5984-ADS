@@ -1,0 +1,2702 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>readme.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="apsc-5984-lab-5-dataframe-manipulation">APSC-5984 Lab 5: Dataframe manipulation</h1>
+<p>Due: 2023-02-20 (Monday) 23:59:59</p>
+<ul>
+<li><a href="#apsc-5984-lab-5-dataframe-manipulation">APSC-5984 Lab 5: Dataframe manipulation</a>
+<ul>
+<li><a href="#0-overview">0. Overview</a></li>
+<li><a href="#1-data-loading-and-saving">1. Data Loading and Saving</a>
+<ul>
+<li><a href="#11-csv-and-tab-delimited-files">1.1 CSV and tab-delimited files</a>
+<ul>
+<li><a href="#111-separators">1.1.1 Separators</a></li>
+<li><a href="#112-header">1.1.2 Header</a></li>
+</ul>
+</li>
+<li><a href="#12-excel-spreadsheet-xlsx">1.2 Excel spreadsheet (.xlsx)</a>
+<ul>
+<li><a href="#121-load-a-single-sheet">1.2.1 Load a single sheet</a></li>
+</ul>
+</li>
+<li><a href="#122-dictionary-of-dataframes">1.2.2 Dictionary of dataframes</a></li>
+<li><a href="#13-save-data">1.3 Save data</a>
+<ul>
+<li><a href="#131-save-as-csv">1.3.1 Save as CSV</a></li>
+</ul>
+</li>
+<li><a href="#132-save-as-excel-spreadsheet">1.3.2 Save as Excel spreadsheet</a></li>
+</ul>
+</li>
+<li><a href="#2-construct-a-dataframe">2. Construct a dataframe</a></li>
+<li><a href="#3-dataframe-manipulation">3. Dataframe manipulation</a>
+<ul>
+<li><a href="#31-index-location-iloc">3.1 Index location (.iloc)</a></li>
+<li><a href="#32-label-based-indexing-loc">3.2 Label-based indexing (.loc)</a></li>
+<li><a href="#33-create-a-new-column">3.3 Create a new column</a></li>
+<li><a href="#34-miscellaneous">3.4 Miscellaneous</a>
+<ul>
+<li><a href="#341-drop-a-column">3.4.1 Drop a column</a></li>
+</ul>
+</li>
+<li><a href="#342-drop-a-row">3.4.2 Drop a row</a></li>
+<li><a href="#343-inspect-the-dimension-and-summary">3.4.3 inspect the dimension and summary</a></li>
+</ul>
+</li>
+<li><a href="#4querying-with-an-example-dataframe">4.Querying with an example dataframe</a>
+<ul>
+<li><a href="#41-check-the-distribution-of-each-column">4.1 Check the distribution of each column</a></li>
+<li><a href="#42-subset-the-dataframe-query">4.2 Subset the dataframe (query)</a></li>
+<li><a href="#43-grouping">4.3 Grouping</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="0-overview">0. Overview</h2>
+<p>We will introduce the concept of <code>DataFrame</code> in this lab. You will be intstructed to use the Python library <code>pandas</code> to manipulate dataframes. First, let's import the library. Conventionally, we import it as <code>pd</code>.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+</div></code></pre>
+<h2 id="1-data-loading-and-saving">1. Data Loading and Saving</h2>
+<p>We will work on the several files in the <code>lab_05</code> folder to practice how to load and save files</p>
+<h3 id="11-csv-and-tab-delimited-files">1.1 CSV and tab-delimited files</h3>
+<h4 id="111-separators">1.1.1 Separators</h4>
+<p>The basic function to load data in <code>pandas</code> is <code>pd.read_csv()</code>. It can read data from a CSV file or a tab-delimited file. The default delimiter is comma &quot;<code>,</code>&quot;, but it also allows you to specify other delimiters, such as tab &quot;<code>\t</code>&quot;.</p>
+<p>The file <code>file_A.csv</code> is a CSV file with comma as the delimiter:</p>
+<pre class="hljs"><code><div>!cat file_A.csv
+</div></code></pre>
+<pre><code>id,A,B,C
+a1,1,1,1
+a2,0,1,0
+a3,1,0,1
+</code></pre>
+<pre class="hljs"><code><div>pd.read_csv(<span class="hljs-string">'file_A.csv'</span>)
+</div></code></pre>
+<pre><code>   id  A  B  C
+0  a1  1  1  1
+1  a2  0  1  0
+2  a3  1  0  1
+</code></pre>
+<p>The file <code>file_A.csv</code> was correctly loaded into Python. The dataframe has 3 rows and 4 columns. What if we use the same way to load the file <code>file_B.txt</code> that is tab-delimited?</p>
+<pre class="hljs"><code><div>!cat file_B.txt
+</div></code></pre>
+<pre><code>id	A	B	C
+a1	1	1	1
+a2	0	1	0
+a3	1	0	1
+</code></pre>
+<pre class="hljs"><code><div>pd.read_csv(<span class="hljs-string">'file_B.txt'</span>)
+</div></code></pre>
+<pre><code>         id\tA\tB\tC
+0        a1\t1\t1\t1
+1        a2\t0\t1\t0
+2  a3\t1\t0\t1\t\t\t
+</code></pre>
+<p>The result was not what we expected. The reason is that the default delimiter is comma, but the file is tab-delimited. We can specify the delimiter as tab &quot;<code>\t</code>&quot; to fix the problem.</p>
+<pre class="hljs"><code><div>pd.read_csv(<span class="hljs-string">'file_B.txt'</span>, sep=<span class="hljs-string">'\t'</span>)
+</div></code></pre>
+<pre><code>   id  A  B  C
+0  a1  1  1  1
+1  a2  0  1  0
+2  a3  1  0  1
+</code></pre>
+<p>Great! Noted that <code>sep</code> can be any character, such as &quot;<code>|</code>&quot;, &quot;<code>;</code>&quot;, &quot;<code>:</code>&quot;, etc. So, always check the delimiter before loading the file.</p>
+<h4 id="112-header">1.1.2 Header</h4>
+<p>In some cases, the first row of the file is not the header. We can use the argument <code>header</code> to specify the row number of the header.</p>
+<p>This example shows what would happen if we do not specify the header wiht a non-header file <code>file_A_nh.csv</code>.</p>
+<pre class="hljs"><code><div>!cat file_A_nh.csv
+</div></code></pre>
+<pre><code>a1,1,1,1
+a2,0,1,0
+a3,1,0,1
+</code></pre>
+<pre class="hljs"><code><div>pd.read_csv(<span class="hljs-string">'file_A_nh.csv'</span>)
+</div></code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+</style></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>a1</th>
+      <th>1</th>
+      <th>1.1</th>
+      <th>1.2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>a2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>a3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The first row was loaded as the header. Here is the fix.</p>
+<pre class="hljs"><code><div>pd.read_csv(<span class="hljs-string">'file_A_nh.csv'</span>, header=<span class="hljs-literal">None</span>)
+</div></code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+</style></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>a1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>a2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>a3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Some files may be coded with two headers:</p>
+<pre class="hljs"><code><div>!cat file_A_2h.csv
+</div></code></pre>
+<pre><code>id,A,B,C
+a1,1,1,1
+a2,0,1,0
+a3,1,0,1
+id,D,E,F
+a4,1,1,1
+a5,0,1,0
+a6,1,0,1
+</code></pre>
+<p>If we want the 5th row to be the header, we can use <code>header=4</code> (again, it is 0-based).</p>
+<pre class="hljs"><code><div>pd.read_csv(<span class="hljs-string">'file_A_2h.csv'</span>, header=<span class="hljs-number">4</span>)
+</div></code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+</style></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>D</th>
+      <th>E</th>
+      <th>F</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>a4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>a5</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>a6</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="12-excel-spreadsheet-xlsx">1.2 Excel spreadsheet (.xlsx)</h3>
+<p>Excel spreadsheet is a common format for data storage. However, given it is a format that contains multiple sheets, it is not straightforward to load it into a tabular format.</p>
+<h4 id="121-load-a-single-sheet">1.2.1 Load a single sheet</h4>
+<p>Here is an example of using <code>pd.read_excel()</code> to load the spreadsheet <code>file_C.xlsx</code>:</p>
+<pre class="hljs"><code><div>pd.read_excel(<span class="hljs-string">'file_C.xlsx'</span>)
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>a1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>a2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>a3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>By default, it only loads the first sheet. We can specify the sheet name or the sheet number to load other sheets.</p>
+<pre class="hljs"><code><div>pd.read_excel(<span class="hljs-string">'file_C.xlsx'</span>, sheet_name=<span class="hljs-string">'Sheet2'</span>)
+</div></code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+</style></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>D</th>
+      <th>E</th>
+      <th>F</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>a4</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>a5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>a6</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>a7</td>
+      <td>2</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>a8</td>
+      <td>3</td>
+      <td>3</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>a9</td>
+      <td>4</td>
+      <td>4</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre class="hljs"><code><div>pd.read_excel(<span class="hljs-string">'file_C.xlsx'</span>, sheet_name=<span class="hljs-string">'Sheet3'</span>)
+</div></code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+</style></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.631007</td>
+      <td>0.034287</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.114071</td>
+      <td>0.370723</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.156949</td>
+      <td>0.851093</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.051913</td>
+      <td>0.089328</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.089216</td>
+      <td>0.861941</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.572473</td>
+      <td>0.364972</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.452546</td>
+      <td>0.152391</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.052752</td>
+      <td>0.024641</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="122-dictionary-of-dataframes">1.2.2 Dictionary of dataframes</h3>
+<p>In <code>pandas</code>, Excel spreadsheet is loaded as a dictionary of dataframes. The keys are the sheet names, and the values are the dataframes.</p>
+<p>To load the entire spreadsheet taht contains all sheets, we can use <code>pd.read_excel()</code> with <code>sheet_name=None</code>:</p>
+<pre class="hljs"><code><div>data = pd.read_excel(<span class="hljs-string">'file_C.xlsx'</span>, sheet_name=<span class="hljs-literal">None</span>)
+print(data)
+</div></code></pre>
+<pre><code>{'Sheet1':    id  A  B  C
+0  a1  1  1  1
+1  a2  0  1  0
+2  a3  1  0  1, 'Sheet2':    id  D  E  F
+0  a4  0  1  0
+1  a5  0  0  0
+2  a6  1  1  0
+3  a7  2  2  0
+4  a8  3  3  0
+5  a9  4  4  0, 'Sheet3':           A         B
+0  0.631007  0.034287
+1  0.114071  0.370723
+2  0.156949  0.851093
+3  0.051913  0.089328
+4  0.089216  0.861941
+5  0.572473  0.364972
+6  0.452546  0.152391
+7  0.052752  0.024641}
+</code></pre>
+<p>The sheets might not be displayed well aligned, but you can still see the keys as each sheet name and its corresponding dataframe. You can use the 'lookup' function we learned in the previous lecture to find the dataframe of a specific sheet:</p>
+<pre class="hljs"><code><div>data[<span class="hljs-string">"Sheet3"</span>]
+</div></code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+</style></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.631007</td>
+      <td>0.034287</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.114071</td>
+      <td>0.370723</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.156949</td>
+      <td>0.851093</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.051913</td>
+      <td>0.089328</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.089216</td>
+      <td>0.861941</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.572473</td>
+      <td>0.364972</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.452546</td>
+      <td>0.152391</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.052752</td>
+      <td>0.024641</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="13-save-data">1.3 Save data</h3>
+<h4 id="131-save-as-csv">1.3.1 Save as CSV</h4>
+<p>We can use <code>df.to_csv()</code> to save a dataframe as a CSV file. Here are parameters that we can use:</p>
+<ul>
+<li><code>sep</code>: the delimiter. Default is comma &quot;<code>,</code>&quot;.</li>
+<li><code>index</code>: whether to save the index column. Default is <code>True</code>.</li>
+<li><code>header</code>: whether to save the header. Default is <code>True</code>.</li>
+<li><code>columns</code>: the columns to save. Default is <code>None</code> (all columns).</li>
+<li><code>mode</code>: the mode to open the file. Default is <code>&quot;w&quot;</code> (write). Other options are <code>&quot;a&quot;</code> (append) and <code>&quot;r&quot;</code> (read).</li>
+</ul>
+<pre class="hljs"><code><div>data[<span class="hljs-string">"Sheet1"</span>].to_csv(<span class="hljs-string">'out_A.csv'</span>)
+!cat out_A.csv
+</div></code></pre>
+<pre><code>,id,A,B,C
+0,a1,1,1,1
+1,a2,0,1,0
+2,a3,1,0,1
+</code></pre>
+<pre class="hljs"><code><div>data[<span class="hljs-string">"Sheet1"</span>].to_csv(<span class="hljs-string">'out_A.csv'</span>, index=<span class="hljs-literal">False</span>)
+!cat out_A.csv
+</div></code></pre>
+<pre><code>id,A,B,C
+a1,1,1,1
+a2,0,1,0
+a3,1,0,1
+</code></pre>
+<pre class="hljs"><code><div>data[<span class="hljs-string">"Sheet1"</span>].to_csv(<span class="hljs-string">'out_A.csv'</span>, index=<span class="hljs-literal">False</span>, header=<span class="hljs-literal">None</span>)
+!cat out_A.csv
+</div></code></pre>
+<pre><code>a1,1,1,1
+a2,0,1,0
+a3,1,0,1
+</code></pre>
+<pre class="hljs"><code><div>data[<span class="hljs-string">"Sheet1"</span>].to_csv(<span class="hljs-string">'out_A.csv'</span>, index=<span class="hljs-literal">False</span>, header=<span class="hljs-literal">None</span>, sep=<span class="hljs-string">'\t'</span>)
+!cat out_A.csv
+</div></code></pre>
+<pre><code>a1	1	1	1
+a2	0	1	0
+a3	1	0	1
+</code></pre>
+<pre class="hljs"><code><div>data[<span class="hljs-string">"Sheet1"</span>].to_csv(<span class="hljs-string">'out_A.csv'</span>, index=<span class="hljs-literal">False</span>, columns=[<span class="hljs-string">'A'</span>, <span class="hljs-string">'B'</span>])
+!cat out_A.csv
+</div></code></pre>
+<pre><code>A,B
+1,1
+0,1
+1,0
+</code></pre>
+<h3 id="132-save-as-excel-spreadsheet">1.3.2 Save as Excel spreadsheet</h3>
+<p>Pandas also allows us to save a dataframe as an Excel spreadsheet. It is highly recommended to interact with Excel spreadsheet using <code>with</code> statement when you want to work with multiple sheets. Here is an example:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> pd.ExcelWriter(<span class="hljs-string">'out_C2.xlsx'</span>) <span class="hljs-keyword">as</span> writer:
+    data[<span class="hljs-string">"Sheet1"</span>].to_excel(writer, sheet_name=<span class="hljs-string">'Sheet1'</span>)
+    data[<span class="hljs-string">"Sheet2"</span>].to_excel(writer, sheet_name=<span class="hljs-string">'Sheet2'</span>)
+    data[<span class="hljs-string">"Sheet3"</span>].to_excel(writer, sheet_name=<span class="hljs-string">'Sheet3'</span>)
+</div></code></pre>
+<p>An example to append a new sheet to an existing spreadsheet:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> pd.ExcelWriter(<span class="hljs-string">'out_C2.xlsx'</span>, mode=<span class="hljs-string">"a"</span>) <span class="hljs-keyword">as</span> writer:
+    data[<span class="hljs-string">"Sheet1"</span>].to_excel(writer, sheet_name=<span class="hljs-string">'Sheet4'</span>, index=<span class="hljs-literal">False</span>)
+    data[<span class="hljs-string">"Sheet2"</span>].to_excel(writer, sheet_name=<span class="hljs-string">'Sheet5'</span>, index=<span class="hljs-literal">False</span>)
+    data[<span class="hljs-string">"Sheet3"</span>].to_excel(writer, sheet_name=<span class="hljs-string">'Sheet6'</span>, index=<span class="hljs-literal">False</span>)
+</div></code></pre>
+<h2 id="2-construct-a-dataframe">2. Construct a dataframe</h2>
+<p>We can also construct a dataframe from scratch. We can start with a dictionary of lists to define our dataframe:</p>
+<pre class="hljs"><code><div>data = dict()
+data[<span class="hljs-string">"id"</span>] = [<span class="hljs-string">"id1"</span>, <span class="hljs-string">"id2"</span>, <span class="hljs-string">"id3"</span>, <span class="hljs-string">"id4"</span>]
+data[<span class="hljs-string">"factor"</span>] = [<span class="hljs-string">"A"</span>, <span class="hljs-string">"B"</span>, <span class="hljs-string">"A"</span>, <span class="hljs-string">"B"</span>]
+data[<span class="hljs-string">"value"</span>] = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]
+print(data)
+</div></code></pre>
+<pre><code>{'id': ['id1', 'id2', 'id3', 'id4'], 'factor': ['A', 'B', 'A', 'B'], 'value': [1, 2, 3, 4]}
+</code></pre>
+<p>And we can put the dictionary into a dataframe using <code>pd.DataFrame()</code>:</p>
+<pre class="hljs"><code><div>df = pd.DataFrame(data)
+df
+</div></code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+</style></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>factor</th>
+      <th>value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>id1</td>
+      <td>A</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>id2</td>
+      <td>B</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>id3</td>
+      <td>A</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>id4</td>
+      <td>B</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="3-dataframe-manipulation">3. Dataframe manipulation</h2>
+<h3 id="31-index-location-iloc">3.1 Index location (.iloc)</h3>
+<p>We can use <code>.iloc()</code> method to access the data by numeric index location. The indexing rule is the same as what we have learned in the sections of <code>list</code> and <code>numpy</code>. In <code>.iloc()</code>, the first argument is the row index, and the second argument is the column index.</p>
+<p>Here is an example dataframe:</p>
+<pre class="hljs"><code><div>data = pd.read_excel(<span class="hljs-string">'file_C.xlsx'</span>, sheet_name=<span class="hljs-string">"Sheet1"</span>)
+data
+</div></code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+</style></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>a1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>a2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>a3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Get the second and third row:</p>
+<pre class="hljs"><code><div>data.iloc[[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], :]
+</div></code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+</style></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>a2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>a3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Get multiple (first and second) columns. (Note we use <code>:</code> to specify all rows.)</p>
+<pre class="hljs"><code><div>data.iloc[:, [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>]]
+</div></code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+</style></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>A</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>a1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>a2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>a3</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>It is equivalent to using slicing:</p>
+<pre class="hljs"><code><div>data.iloc[:, :<span class="hljs-number">2</span>]
+</div></code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+</style></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>A</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>a1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>a2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>a3</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="32-label-based-indexing-loc">3.2 Label-based indexing (.loc)</h3>
+<p>The <code>.loc()</code> method is another way to access the data. It works with either column/index names or boolean arrays.</p>
+<pre class="hljs"><code><div>data.loc[[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>], :]
+</div></code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+</style></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>a1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>a2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre class="hljs"><code><div>data.loc[:, [<span class="hljs-string">'id'</span>, <span class="hljs-string">'B'</span>]]
+</div></code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+</style></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>a1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>a2</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>a3</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Use boolean to select column containing a letter &quot;B&quot;. (We can use <code>df.columns</code> to list all column names)</p>
+<pre class="hljs"><code><div>colnames = data.columns
+bol_B = [<span class="hljs-string">"B"</span> <span class="hljs-keyword">in</span> col <span class="hljs-keyword">for</span> col <span class="hljs-keyword">in</span> colnames]
+print(bol_B)
+</div></code></pre>
+<pre><code>[False, False, True, False]
+</code></pre>
+<pre class="hljs"><code><div>data.loc[:, bol_B]
+</div></code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+</style></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre class="hljs"><code><div>data
+</div></code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+</style></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>a1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>a2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>a3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="33-create-a-new-column">3.3 Create a new column</h3>
+<p>The <code>.loc()</code> method is also a recommended way (compared to <code>df[&quot;new_column&quot;]</code>) to create a new column. Simply put a desired column name in the second argument, and assign a value to it.</p>
+<pre class="hljs"><code><div>data.loc[:, <span class="hljs-string">"new_col"</span>] = [<span class="hljs-string">"new"</span>] * <span class="hljs-number">3</span>
+<span class="hljs-comment"># or</span>
+data.loc[:, <span class="hljs-string">"new_col"</span>] = <span class="hljs-string">"new"</span>
+data
+</div></code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+</style></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>new_col</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>a1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>new</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>a2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>new</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>a3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>new</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="34-miscellaneous">3.4 Miscellaneous</h3>
+<h4 id="341-drop-a-column">3.4.1 Drop a column</h4>
+<pre class="hljs"><code><div>data.drop(columns=[<span class="hljs-string">"B"</span>])
+</div></code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+</style></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>A</th>
+      <th>C</th>
+      <th>new_col</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>a1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>new</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>a2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>new</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>a3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>new</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="342-drop-a-row">3.4.2 Drop a row</h3>
+<pre class="hljs"><code><div>data.drop(index=[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>])
+</div></code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+</style></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>new_col</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>a3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>new</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="343-inspect-the-dimension-and-summary">3.4.3 inspect the dimension and summary</h3>
+<p><code>df.shape</code> returns the dimension of the dataframe. This tells us that the dataframe has 3 rows and 5 columns.</p>
+<pre class="hljs"><code><div>data.shape
+</div></code></pre>
+<pre><code>(3, 5)
+</code></pre>
+<p>df.info() is another way to inspect the dataframe of its dimension and data types of each column.</p>
+<pre class="hljs"><code><div>data.info()
+</div></code></pre>
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 3 entries, 0 to 2
+Data columns (total 5 columns):
+ #   Column   Non-Null Count  Dtype 
+---  ------   --------------  ----- 
+ 0   id       3 non-null      object
+ 1   A        3 non-null      int64 
+ 2   B        3 non-null      int64 
+ 3   C        3 non-null      int64 
+ 4   new_col  3 non-null      object
+dtypes: int64(3), object(2)
+memory usage: 248.0+ bytes
+</code></pre>
+<p><code>df.describe()</code> returns the summary statistics of the dataframe. Only numeric columns are included in the summary statistics.</p>
+<pre class="hljs"><code><div>data.describe()
+</div></code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+</style></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>3.000000</td>
+      <td>3.000000</td>
+      <td>3.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.666667</td>
+      <td>0.666667</td>
+      <td>0.666667</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.577350</td>
+      <td>0.577350</td>
+      <td>0.577350</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.500000</td>
+      <td>0.500000</td>
+      <td>0.500000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><code>df[&quot;column&quot;].value_counts()</code> returns the counts of unique values in that specified column. Below the example tells us that there are two rows with value 1 and one row with value 0.</p>
+<pre class="hljs"><code><div>data[<span class="hljs-string">"B"</span>].value_counts()
+</div></code></pre>
+<pre><code>1    2
+0    1
+Name: B, dtype: int64
+</code></pre>
+<h2 id="4querying-with-an-example-dataframe">4.Querying with an example dataframe</h2>
+<p>Let's create a mock dataframe for this section:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+
+factors = [i <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(<span class="hljs-number">30</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> [<span class="hljs-string">"A"</span>, <span class="hljs-string">"B"</span>, <span class="hljs-string">"C"</span>, <span class="hljs-string">"D"</span>]]
+<span class="hljs-comment"># random sample from id {1, 2, 3, 4, 5, 6}</span>
+ids = np.random.choice([<span class="hljs-string">"id_%d"</span> % (i + <span class="hljs-number">1</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">6</span>)], <span class="hljs-number">120</span>)
+envs = [i <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(<span class="hljs-number">60</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> [<span class="hljs-string">"env_1"</span>, <span class="hljs-string">"env_2"</span>]]
+obs = np.random.normal(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">120</span>)
+data = pd.DataFrame({<span class="hljs-string">"factor"</span>: factors, <span class="hljs-string">"id"</span>: ids, <span class="hljs-string">"env"</span>: envs, <span class="hljs-string">"obs"</span>: obs})
+data.to_csv(<span class="hljs-string">"file_D.csv"</span>, index=<span class="hljs-literal">False</span>)
+</div></code></pre>
+<pre class="hljs"><code><div>data = pd.read_csv(<span class="hljs-string">"file_D.csv"</span>)
+data.info()
+data
+</div></code></pre>
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 120 entries, 0 to 119
+Data columns (total 4 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   factor  120 non-null    object 
+ 1   id      120 non-null    object 
+ 2   env     120 non-null    object 
+ 3   obs     120 non-null    float64
+dtypes: float64(1), object(3)
+memory usage: 3.9+ KB
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+</style></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>factor</th>
+      <th>id</th>
+      <th>env</th>
+      <th>obs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>A</td>
+      <td>id_4</td>
+      <td>env_1</td>
+      <td>-0.096375</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>B</td>
+      <td>id_6</td>
+      <td>env_2</td>
+      <td>-0.501217</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>C</td>
+      <td>id_2</td>
+      <td>env_1</td>
+      <td>0.653886</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>D</td>
+      <td>id_1</td>
+      <td>env_2</td>
+      <td>0.592581</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>A</td>
+      <td>id_2</td>
+      <td>env_1</td>
+      <td>-0.573104</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>115</th>
+      <td>D</td>
+      <td>id_3</td>
+      <td>env_2</td>
+      <td>-0.144350</td>
+    </tr>
+    <tr>
+      <th>116</th>
+      <td>A</td>
+      <td>id_1</td>
+      <td>env_1</td>
+      <td>1.098145</td>
+    </tr>
+    <tr>
+      <th>117</th>
+      <td>B</td>
+      <td>id_2</td>
+      <td>env_2</td>
+      <td>1.206627</td>
+    </tr>
+    <tr>
+      <th>118</th>
+      <td>C</td>
+      <td>id_2</td>
+      <td>env_1</td>
+      <td>-0.565825</td>
+    </tr>
+    <tr>
+      <th>119</th>
+      <td>D</td>
+      <td>id_5</td>
+      <td>env_2</td>
+      <td>0.837069</td>
+    </tr>
+  </tbody>
+</table>
+<p>120 rows &#xD7; 4 columns</p>
+
+<h3 id="41-check-the-distribution-of-each-column">4.1 Check the distribution of each column</h3>
+<pre class="hljs"><code><div>data[<span class="hljs-string">"factor"</span>].value_counts()
+</div></code></pre>
+<pre><code>A    30
+B    30
+C    30
+D    30
+Name: factor, dtype: int64
+</code></pre>
+<pre class="hljs"><code><div>data[<span class="hljs-string">"id"</span>].value_counts()
+</div></code></pre>
+<pre><code>id_2    27
+id_1    22
+id_4    20
+id_5    19
+id_6    16
+id_3    16
+Name: id, dtype: int64
+</code></pre>
+<pre class="hljs"><code><div>data[<span class="hljs-string">"env"</span>].value_counts()
+</div></code></pre>
+<pre><code>env_1    60
+env_2    60
+Name: env, dtype: int64
+</code></pre>
+<pre class="hljs"><code><div>data[<span class="hljs-string">"obs"</span>].value_counts()
+</div></code></pre>
+<pre><code>-0.096375    1
+-0.501217    1
+-1.738500    1
+ 0.885649    1
+ 0.046750    1
+            ..
+-2.412101    1
+-0.225374    1
+-0.001173    1
+-1.442376    1
+ 0.837069    1
+Name: obs, Length: 120, dtype: int64
+</code></pre>
+<pre class="hljs"><code><div>data[<span class="hljs-string">"obs"</span>].describe()
+</div></code></pre>
+<pre><code>count    120.000000
+mean       0.036494
+std        1.002144
+min       -2.412101
+25%       -0.667615
+50%        0.008102
+75%        0.762718
+max        2.922766
+Name: obs, dtype: float64
+</code></pre>
+<p>For better visualization, we can use <code>df.hist()</code> to plot the histogram of each column.</p>
+<pre class="hljs"><code><div>data[<span class="hljs-string">"obs"</span>].hist()
+</div></code></pre>
+<pre><code>&lt;AxesSubplot: &gt;
+</code></pre>
+<p><img src="file:///Users/niche/Library/CloudStorage/OneDrive-VirginiaTech/_05_Teaching/APSC-5984-ADS/labs/lab_05/readme_files/readme_85_1.png" alt="png"></p>
+<h3 id="42-subset-the-dataframe-query">4.2 Subset the dataframe (query)</h3>
+<pre class="hljs"><code><div>data_sub = data.query(<span class="hljs-string">"obs &gt; 0"</span>)
+data_sub[:<span class="hljs-number">5</span>]
+</div></code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+</style></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>factor</th>
+      <th>id</th>
+      <th>env</th>
+      <th>obs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>C</td>
+      <td>id_2</td>
+      <td>env_1</td>
+      <td>0.653886</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>D</td>
+      <td>id_1</td>
+      <td>env_2</td>
+      <td>0.592581</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>B</td>
+      <td>id_5</td>
+      <td>env_2</td>
+      <td>1.583229</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>C</td>
+      <td>id_4</td>
+      <td>env_1</td>
+      <td>0.875182</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>D</td>
+      <td>id_5</td>
+      <td>env_2</td>
+      <td>1.416503</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre class="hljs"><code><div>data_sub[<span class="hljs-string">"obs"</span>].hist()
+</div></code></pre>
+<pre><code>&lt;AxesSubplot: &gt;
+</code></pre>
+<p><img src="file:///Users/niche/Library/CloudStorage/OneDrive-VirginiaTech/_05_Teaching/APSC-5984-ADS/labs/lab_05/readme_files/readme_88_1.png" alt="png"></p>
+<pre class="hljs"><code><div>data_id1 = data.query(<span class="hljs-string">"id == 'id_1'"</span>)
+data_id1[:<span class="hljs-number">5</span>]
+</div></code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+</style></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>factor</th>
+      <th>id</th>
+      <th>env</th>
+      <th>obs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3</th>
+      <td>D</td>
+      <td>id_1</td>
+      <td>env_2</td>
+      <td>0.592581</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>A</td>
+      <td>id_1</td>
+      <td>env_1</td>
+      <td>0.043624</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>C</td>
+      <td>id_1</td>
+      <td>env_1</td>
+      <td>0.154333</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>C</td>
+      <td>id_1</td>
+      <td>env_1</td>
+      <td>0.355309</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>A</td>
+      <td>id_1</td>
+      <td>env_1</td>
+      <td>0.879280</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre class="hljs"><code><div>data_id1.hist()
+</div></code></pre>
+<pre><code>array([[&lt;AxesSubplot: title={'center': 'obs'}&gt;]], dtype=object)
+</code></pre>
+<p><img src="file:///Users/niche/Library/CloudStorage/OneDrive-VirginiaTech/_05_Teaching/APSC-5984-ADS/labs/lab_05/readme_files/readme_90_1.png" alt="png"></p>
+<p>Multiple conditions can be combined using <code>&amp;</code> (and) and <code>|</code> (or).</p>
+<pre class="hljs"><code><div>data.query(<span class="hljs-string">"id == 'id_1' and (obs &gt; 1 or obs &lt; -1)"</span>)
+</div></code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+</style></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>factor</th>
+      <th>id</th>
+      <th>env</th>
+      <th>obs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>21</th>
+      <td>B</td>
+      <td>id_1</td>
+      <td>env_2</td>
+      <td>-1.950799</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>D</td>
+      <td>id_1</td>
+      <td>env_2</td>
+      <td>1.524525</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>A</td>
+      <td>id_1</td>
+      <td>env_1</td>
+      <td>-1.442376</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>D</td>
+      <td>id_1</td>
+      <td>env_2</td>
+      <td>-1.418744</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>A</td>
+      <td>id_1</td>
+      <td>env_1</td>
+      <td>1.929814</td>
+    </tr>
+    <tr>
+      <th>81</th>
+      <td>B</td>
+      <td>id_1</td>
+      <td>env_2</td>
+      <td>1.399891</td>
+    </tr>
+    <tr>
+      <th>116</th>
+      <td>A</td>
+      <td>id_1</td>
+      <td>env_1</td>
+      <td>1.098145</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="43-grouping">4.3 Grouping</h3>
+<pre class="hljs"><code><div>data.groupby(<span class="hljs-string">"id"</span>)[<span class="hljs-string">"obs"</span>].mean()
+</div></code></pre>
+<pre><code>id
+id_1    0.227263
+id_2    0.121979
+id_3   -0.229144
+id_4   -0.161469
+id_5    0.312349
+id_6   -0.184553
+Name: obs, dtype: float64
+</code></pre>
+<pre class="hljs"><code><div>data.groupby([<span class="hljs-string">"id"</span>, <span class="hljs-string">"factor"</span>])[<span class="hljs-string">"obs"</span>].mean()
+</div></code></pre>
+<pre><code>id    factor
+id_1  A         0.450216
+      B        -0.125937
+      C         0.488375
+      D         0.122448
+id_2  A        -0.030652
+      B         0.129420
+      C         0.475717
+      D        -0.475298
+id_3  A         0.056030
+      B        -0.654136
+      C        -0.165900
+      D        -0.370053
+id_4  A        -0.523897
+      B        -0.246820
+      C        -0.083987
+      D         0.160026
+id_5  A         0.258584
+      B         0.823033
+      C        -0.208428
+      D         0.331506
+id_6  A         0.218340
+      B        -0.417258
+      C        -0.275666
+      D        -0.721520
+Name: obs, dtype: float64
+</code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># multiple calculation</span>
+cus_fun = <span class="hljs-keyword">lambda</span> x: x.max() - x.min()
+pivot = data.groupby([<span class="hljs-string">"id"</span>, <span class="hljs-string">"factor"</span>])[<span class="hljs-string">"obs"</span>].agg([<span class="hljs-string">"mean"</span>, <span class="hljs-string">"std"</span>, <span class="hljs-string">"count"</span>, cus_fun])
+pivot
+</div></code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+</style></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>mean</th>
+      <th>std</th>
+      <th>count</th>
+      <th>&lt;lambda_0&gt;</th>
+    </tr>
+    <tr>
+      <th>id</th>
+      <th>factor</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="4" valign="top">id_1</th>
+      <th>A</th>
+      <td>0.450216</td>
+      <td>1.149487</td>
+      <td>6</td>
+      <td>3.372190</td>
+    </tr>
+    <tr>
+      <th>B</th>
+      <td>-0.125937</td>
+      <td>1.196017</td>
+      <td>6</td>
+      <td>3.350690</td>
+    </tr>
+    <tr>
+      <th>C</th>
+      <td>0.488375</td>
+      <td>0.444752</td>
+      <td>5</td>
+      <td>0.945838</td>
+    </tr>
+    <tr>
+      <th>D</th>
+      <td>0.122448</td>
+      <td>1.130064</td>
+      <td>5</td>
+      <td>2.943270</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">id_2</th>
+      <th>A</th>
+      <td>-0.030652</td>
+      <td>0.525032</td>
+      <td>4</td>
+      <td>1.072389</td>
+    </tr>
+    <tr>
+      <th>B</th>
+      <td>0.129420</td>
+      <td>0.842530</td>
+      <td>8</td>
+      <td>2.520642</td>
+    </tr>
+    <tr>
+      <th>C</th>
+      <td>0.475717</td>
+      <td>0.950265</td>
+      <td>10</td>
+      <td>2.940279</td>
+    </tr>
+    <tr>
+      <th>D</th>
+      <td>-0.475298</td>
+      <td>0.956688</td>
+      <td>5</td>
+      <td>2.488064</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">id_3</th>
+      <th>A</th>
+      <td>0.056030</td>
+      <td>0.926571</td>
+      <td>7</td>
+      <td>2.849754</td>
+    </tr>
+    <tr>
+      <th>B</th>
+      <td>-0.654136</td>
+      <td>0.668831</td>
+      <td>4</td>
+      <td>1.575225</td>
+    </tr>
+    <tr>
+      <th>C</th>
+      <td>-0.165900</td>
+      <td>1.353717</td>
+      <td>2</td>
+      <td>1.914444</td>
+    </tr>
+    <tr>
+      <th>D</th>
+      <td>-0.370053</td>
+      <td>0.300505</td>
+      <td>3</td>
+      <td>0.566801</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">id_4</th>
+      <th>A</th>
+      <td>-0.523897</td>
+      <td>0.786162</td>
+      <td>5</td>
+      <td>2.097706</td>
+    </tr>
+    <tr>
+      <th>B</th>
+      <td>-0.246820</td>
+      <td>1.020748</td>
+      <td>5</td>
+      <td>2.157371</td>
+    </tr>
+    <tr>
+      <th>C</th>
+      <td>-0.083987</td>
+      <td>0.864944</td>
+      <td>4</td>
+      <td>2.064482</td>
+    </tr>
+    <tr>
+      <th>D</th>
+      <td>0.160026</td>
+      <td>0.762164</td>
+      <td>6</td>
+      <td>1.860967</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">id_5</th>
+      <th>A</th>
+      <td>0.258584</td>
+      <td>0.846841</td>
+      <td>3</td>
+      <td>1.663688</td>
+    </tr>
+    <tr>
+      <th>B</th>
+      <td>0.823033</td>
+      <td>1.107697</td>
+      <td>3</td>
+      <td>2.031118</td>
+    </tr>
+    <tr>
+      <th>C</th>
+      <td>-0.208428</td>
+      <td>0.766466</td>
+      <td>3</td>
+      <td>1.490895</td>
+    </tr>
+    <tr>
+      <th>D</th>
+      <td>0.331506</td>
+      <td>1.716422</td>
+      <td>10</td>
+      <td>5.334867</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">id_6</th>
+      <th>A</th>
+      <td>0.218340</td>
+      <td>1.552812</td>
+      <td>5</td>
+      <td>3.078880</td>
+    </tr>
+    <tr>
+      <th>B</th>
+      <td>-0.417258</td>
+      <td>0.882586</td>
+      <td>4</td>
+      <td>2.123702</td>
+    </tr>
+    <tr>
+      <th>C</th>
+      <td>-0.275666</td>
+      <td>0.778769</td>
+      <td>6</td>
+      <td>1.978419</td>
+    </tr>
+    <tr>
+      <th>D</th>
+      <td>-0.721520</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre class="hljs"><code><div>pivot.loc[<span class="hljs-string">"id_5"</span>]
+</div></code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+</style></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mean</th>
+      <th>std</th>
+      <th>count</th>
+      <th>&lt;lambda_0&gt;</th>
+    </tr>
+    <tr>
+      <th>factor</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>A</th>
+      <td>0.258584</td>
+      <td>0.846841</td>
+      <td>3</td>
+      <td>1.663688</td>
+    </tr>
+    <tr>
+      <th>B</th>
+      <td>0.823033</td>
+      <td>1.107697</td>
+      <td>3</td>
+      <td>2.031118</td>
+    </tr>
+    <tr>
+      <th>C</th>
+      <td>-0.208428</td>
+      <td>0.766466</td>
+      <td>3</td>
+      <td>1.490895</td>
+    </tr>
+    <tr>
+      <th>D</th>
+      <td>0.331506</td>
+      <td>1.716422</td>
+      <td>10</td>
+      <td>5.334867</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre class="hljs"><code><div>pivot.loc[<span class="hljs-string">"id_3"</span>].loc[<span class="hljs-string">"A"</span>]
+</div></code></pre>
+<pre><code>mean          0.056030
+std           0.926571
+count         7.000000
+&lt;lambda_0&gt;    2.849754
+Name: A, dtype: float64
+</code></pre>
+<pre class="hljs"><code><div>data_pivot = pivot.reset_index()
+data_pivot
+</div></code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+</style></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>factor</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>count</th>
+      <th>&lt;lambda_0&gt;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>id_1</td>
+      <td>A</td>
+      <td>0.450216</td>
+      <td>1.149487</td>
+      <td>6</td>
+      <td>3.372190</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>id_1</td>
+      <td>B</td>
+      <td>-0.125937</td>
+      <td>1.196017</td>
+      <td>6</td>
+      <td>3.350690</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>id_1</td>
+      <td>C</td>
+      <td>0.488375</td>
+      <td>0.444752</td>
+      <td>5</td>
+      <td>0.945838</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>id_1</td>
+      <td>D</td>
+      <td>0.122448</td>
+      <td>1.130064</td>
+      <td>5</td>
+      <td>2.943270</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>id_2</td>
+      <td>A</td>
+      <td>-0.030652</td>
+      <td>0.525032</td>
+      <td>4</td>
+      <td>1.072389</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>id_2</td>
+      <td>B</td>
+      <td>0.129420</td>
+      <td>0.842530</td>
+      <td>8</td>
+      <td>2.520642</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>id_2</td>
+      <td>C</td>
+      <td>0.475717</td>
+      <td>0.950265</td>
+      <td>10</td>
+      <td>2.940279</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>id_2</td>
+      <td>D</td>
+      <td>-0.475298</td>
+      <td>0.956688</td>
+      <td>5</td>
+      <td>2.488064</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>id_3</td>
+      <td>A</td>
+      <td>0.056030</td>
+      <td>0.926571</td>
+      <td>7</td>
+      <td>2.849754</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>id_3</td>
+      <td>B</td>
+      <td>-0.654136</td>
+      <td>0.668831</td>
+      <td>4</td>
+      <td>1.575225</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>id_3</td>
+      <td>C</td>
+      <td>-0.165900</td>
+      <td>1.353717</td>
+      <td>2</td>
+      <td>1.914444</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>id_3</td>
+      <td>D</td>
+      <td>-0.370053</td>
+      <td>0.300505</td>
+      <td>3</td>
+      <td>0.566801</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>id_4</td>
+      <td>A</td>
+      <td>-0.523897</td>
+      <td>0.786162</td>
+      <td>5</td>
+      <td>2.097706</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>id_4</td>
+      <td>B</td>
+      <td>-0.246820</td>
+      <td>1.020748</td>
+      <td>5</td>
+      <td>2.157371</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>id_4</td>
+      <td>C</td>
+      <td>-0.083987</td>
+      <td>0.864944</td>
+      <td>4</td>
+      <td>2.064482</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>id_4</td>
+      <td>D</td>
+      <td>0.160026</td>
+      <td>0.762164</td>
+      <td>6</td>
+      <td>1.860967</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>id_5</td>
+      <td>A</td>
+      <td>0.258584</td>
+      <td>0.846841</td>
+      <td>3</td>
+      <td>1.663688</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>id_5</td>
+      <td>B</td>
+      <td>0.823033</td>
+      <td>1.107697</td>
+      <td>3</td>
+      <td>2.031118</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>id_5</td>
+      <td>C</td>
+      <td>-0.208428</td>
+      <td>0.766466</td>
+      <td>3</td>
+      <td>1.490895</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>id_5</td>
+      <td>D</td>
+      <td>0.331506</td>
+      <td>1.716422</td>
+      <td>10</td>
+      <td>5.334867</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>id_6</td>
+      <td>A</td>
+      <td>0.218340</td>
+      <td>1.552812</td>
+      <td>5</td>
+      <td>3.078880</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>id_6</td>
+      <td>B</td>
+      <td>-0.417258</td>
+      <td>0.882586</td>
+      <td>4</td>
+      <td>2.123702</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>id_6</td>
+      <td>C</td>
+      <td>-0.275666</td>
+      <td>0.778769</td>
+      <td>6</td>
+      <td>1.978419</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>id_6</td>
+      <td>D</td>
+      <td>-0.721520</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre class="hljs"><code><div>data_pivot.to_csv(<span class="hljs-string">"out_pivot.csv"</span>, index=<span class="hljs-literal">False</span>)
+</div></code></pre>
+<pre class="hljs"><code><div>!cat out_pivot.csv
+</div></code></pre>
+<pre><code>id,factor,mean,std,count,&lt;lambda_0&gt;
+id_1,A,0.4502155942942296,1.1494867060236997,6,3.3721897757162207
+id_1,B,-0.1259366610516431,1.196016985460374,6,3.350689989092595
+id_1,C,0.4883747585534007,0.44475233854395824,5,0.9458380117674557
+id_1,D,0.12244768621716347,1.1300641404870861,5,2.943269690440943
+id_2,A,-0.030652242441548905,0.5250324077373204,4,1.072389338186159
+id_2,B,0.12942035707074961,0.8425298886853323,8,2.520641650849491
+id_2,C,0.4757170648811825,0.9502646143283857,10,2.940279011945107
+id_2,D,-0.47529762313270607,0.956688486181213,5,2.4880643354394296
+id_3,A,0.05602950865985269,0.9265710782024227,7,2.849753629637062
+id_3,B,-0.6541364904986321,0.668831320727894,4,1.5752249399766416
+id_3,C,-0.16589986071968604,1.3537165137416785,2,1.9144442533419062
+id_3,D,-0.37005307748887545,0.3005047663244578,3,0.5668013533114964
+id_4,A,-0.523897437744935,0.7861618270334397,5,2.0977061799076733
+id_4,B,-0.24681997904527445,1.0207480310530137,5,2.1573714859726527
+id_4,C,-0.08398675310215067,0.8649444477299162,4,2.0644821538776297
+id_4,D,0.16002643891394427,0.7621635992642647,6,1.8609673554616017
+id_5,A,0.2585839127391286,0.8468407992687575,3,1.6636883541767142
+id_5,B,0.8230330925737949,1.1076966694366093,3,2.031118209894996
+id_5,C,-0.20842750162321177,0.7664656533758334,3,1.4908953311812227
+id_5,D,0.3315064539246367,1.716422386830676,10,5.334867463079514
+id_6,A,0.2183398832539288,1.5528119273700163,5,3.0788800254758226
+id_6,B,-0.41725782592547744,0.8825863995871458,4,2.1237017745237234
+id_6,C,-0.275666141606862,0.7787689601953202,6,1.9784193244503814
+id_6,D,-0.7215196634577331,,1,0.0
+</code></pre>
+
+</body>
+</html>
