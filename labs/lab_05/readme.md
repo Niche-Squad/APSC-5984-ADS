@@ -2,37 +2,9 @@
 
 Due: 2023-02-20 (Monday) 23:59:59
 
-- [APSC-5984 Lab 5: Dataframe manipulation](#apsc-5984-lab-5-dataframe-manipulation)
-  - [0. Overview](#0-overview)
-  - [1. Data Loading and Saving](#1-data-loading-and-saving)
-    - [1.1 CSV and tab-delimited files](#11-csv-and-tab-delimited-files)
-      - [1.1.1 Separators](#111-separators)
-      - [1.1.2 Header](#112-header)
-    - [1.2 Excel spreadsheet (.xlsx)](#12-excel-spreadsheet-xlsx)
-      - [1.2.1 Load a single sheet](#121-load-a-single-sheet)
-    - [1.2.2 Dictionary of dataframes](#122-dictionary-of-dataframes)
-    - [1.3 Save data](#13-save-data)
-      - [1.3.1 Save as CSV](#131-save-as-csv)
-    - [1.3.2 Save as Excel spreadsheet](#132-save-as-excel-spreadsheet)
-  - [2. Construct a dataframe](#2-construct-a-dataframe)
-  - [3. Dataframe manipulation](#3-dataframe-manipulation)
-    - [3.1 Index location (.iloc)](#31-index-location-iloc)
-    - [3.2 Label-based indexing (.loc)](#32-label-based-indexing-loc)
-    - [3.3 Create a new column](#33-create-a-new-column)
-    - [3.4 Miscellaneous](#34-miscellaneous)
-      - [3.4.1 Drop a column](#341-drop-a-column)
-    - [3.4.2 Drop a row](#342-drop-a-row)
-    - [3.4.3 inspect the dimension and summary](#343-inspect-the-dimension-and-summary)
-  - [4.Querying with an example dataframe](#4querying-with-an-example-dataframe)
-    - [4.1 Check the distribution of each column](#41-check-the-distribution-of-each-column)
-    - [4.2 Subset the dataframe (query)](#42-subset-the-dataframe-query)
-    - [4.3 Grouping](#43-grouping)
-
-
 ## 0. Overview
 
 We will introduce the concept of `DataFrame` in this lab. You will be intstructed to use the Python library `pandas` to manipulate dataframes. First, let's import the library. Conventionally, we import it as `pd`.
-
 
 ```python
 import pandas as pd
@@ -65,10 +37,14 @@ The file `file_A.csv` is a CSV file with comma as the delimiter:
 pd.read_csv('file_A.csv')
 ```
 
+
+
+
        id  A  B  C
     0  a1  1  1  1
     1  a2  0  1  0
     2  a3  1  0  1
+
 
 
 The file `file_A.csv` was correctly loaded into Python. The dataframe has 3 rows and 4 columns. What if we use the same way to load the file `file_B.txt` that is tab-delimited?
@@ -88,10 +64,14 @@ The file `file_A.csv` was correctly loaded into Python. The dataframe has 3 rows
 pd.read_csv('file_B.txt')
 ```
 
-             id\tA\tB\tC
-    0        a1\t1\t1\t1
-    1        a2\t0\t1\t0
-    2  a3\t1\t0\t1\t\t\t
+
+
+
+       id\tA\tB\tC
+    0  a1\t1\t1\t1
+    1  a2\t0\t1\t0
+    2  a3\t1\t0\t1
+
 
 
 The result was not what we expected. The reason is that the default delimiter is comma, but the file is tab-delimited. We can specify the delimiter as tab "`\t`" to fix the problem.
@@ -101,10 +81,14 @@ The result was not what we expected. The reason is that the default delimiter is
 pd.read_csv('file_B.txt', sep='\t')
 ```
 
+
+
+
        id  A  B  C
     0  a1  1  1  1
     1  a2  0  1  0
     2  a3  1  0  1
+
 
 
 Great! Noted that `sep` can be any character, such as "`|`", "`;`", "`:`", etc. So, always check the delimiter before loading the file.
@@ -132,48 +116,9 @@ pd.read_csv('file_A_nh.csv')
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>a1</th>
-      <th>1</th>
-      <th>1.1</th>
-      <th>1.2</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>a2</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>a3</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+       a1  1  1.1  1.2
+    0  a2  0    1    0
+    1  a3  1    0    1
 
 
 
@@ -187,55 +132,10 @@ pd.read_csv('file_A_nh.csv', header=None)
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>a1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>a2</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>a3</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+        0  1  2  3
+    0  a1  1  1  1
+    1  a2  0  1  0
+    2  a3  1  0  1
 
 
 
@@ -265,55 +165,10 @@ pd.read_csv('file_A_2h.csv', header=4)
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>D</th>
-      <th>E</th>
-      <th>F</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>a4</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>a5</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>a6</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+       id  D  E  F
+    0  a4  1  1  1
+    1  a5  0  1  0
+    2  a6  1  0  1
 
 
 
@@ -333,55 +188,10 @@ pd.read_excel('file_C.xlsx')
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>a1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>a2</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>a3</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+       id  A  B  C
+    0  a1  1  1  1
+    1  a2  0  1  0
+    2  a3  1  0  1
 
 
 
@@ -395,76 +205,13 @@ pd.read_excel('file_C.xlsx', sheet_name='Sheet2')
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>D</th>
-      <th>E</th>
-      <th>F</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>a4</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>a5</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>a6</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>a7</td>
-      <td>2</td>
-      <td>2</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>a8</td>
-      <td>3</td>
-      <td>3</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>a9</td>
-      <td>4</td>
-      <td>4</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+       id  D  E  F
+    0  a4  0  1  0
+    1  a5  0  0  0
+    2  a6  1  1  0
+    3  a7  2  2  0
+    4  a8  3  3  0
+    5  a9  4  4  0
 
 
 
@@ -476,72 +223,15 @@ pd.read_excel('file_C.xlsx', sheet_name='Sheet3')
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.631007</td>
-      <td>0.034287</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.114071</td>
-      <td>0.370723</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.156949</td>
-      <td>0.851093</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.051913</td>
-      <td>0.089328</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.089216</td>
-      <td>0.861941</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>0.572473</td>
-      <td>0.364972</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>0.452546</td>
-      <td>0.152391</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>0.052752</td>
-      <td>0.024641</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+              A         B
+    0  0.631007  0.034287
+    1  0.114071  0.370723
+    2  0.156949  0.851093
+    3  0.051913  0.089328
+    4  0.089216  0.861941
+    5  0.572473  0.364972
+    6  0.452546  0.152391
+    7  0.052752  0.024641
 
 
 
@@ -588,72 +278,15 @@ data["Sheet3"]
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.631007</td>
-      <td>0.034287</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.114071</td>
-      <td>0.370723</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.156949</td>
-      <td>0.851093</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.051913</td>
-      <td>0.089328</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.089216</td>
-      <td>0.861941</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>0.572473</td>
-      <td>0.364972</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>0.452546</td>
-      <td>0.152391</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>0.052752</td>
-      <td>0.024641</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+              A         B
+    0  0.631007  0.034287
+    1  0.114071  0.370723
+    2  0.156949  0.851093
+    3  0.051913  0.089328
+    4  0.089216  0.861941
+    5  0.572473  0.364972
+    6  0.452546  0.152391
+    7  0.052752  0.024641
 
 
 
@@ -776,57 +409,11 @@ df
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>factor</th>
-      <th>value</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>id1</td>
-      <td>A</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>id2</td>
-      <td>B</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>id3</td>
-      <td>A</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>id4</td>
-      <td>B</td>
-      <td>4</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+        id factor  value
+    0  id1      A      1
+    1  id2      B      2
+    2  id3      A      3
+    3  id4      B      4
 
 
 
@@ -847,55 +434,10 @@ data
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>a1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>a2</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>a3</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+       id  A  B  C
+    0  a1  1  1  1
+    1  a2  0  1  0
+    2  a3  1  0  1
 
 
 
@@ -909,48 +451,9 @@ data.iloc[[1, 2], :]
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>a2</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>a3</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+       id  A  B  C
+    1  a2  0  1  0
+    2  a3  1  0  1
 
 
 
@@ -964,47 +467,10 @@ data.iloc[:, [0, 1]]
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>A</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>a1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>a2</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>a3</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+       id  A
+    0  a1  1
+    1  a2  0
+    2  a3  1
 
 
 
@@ -1018,47 +484,10 @@ data.iloc[:, :2]
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>A</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>a1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>a2</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>a3</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+       id  A
+    0  a1  1
+    1  a2  0
+    2  a3  1
 
 
 
@@ -1074,48 +503,9 @@ data.loc[[0, 1], :]
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>a1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>a2</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+       id  A  B  C
+    0  a1  1  1  1
+    1  a2  0  1  0
 
 
 
@@ -1127,47 +517,10 @@ data.loc[:, ['id', 'B']]
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>B</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>a1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>a2</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>a3</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+       id  B
+    0  a1  1
+    1  a2  1
+    2  a3  0
 
 
 
@@ -1191,43 +544,10 @@ data.loc[:, bol_B]
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>B</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+       B
+    0  1
+    1  1
+    2  0
 
 
 
@@ -1239,55 +559,10 @@ data
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>a1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>a2</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>a3</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+       id  A  B  C
+    0  a1  1  1  1
+    1  a2  0  1  0
+    2  a3  1  0  1
 
 
 
@@ -1305,59 +580,10 @@ data
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>new_col</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>a1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>new</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>a2</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>new</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>a3</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>new</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+       id  A  B  C new_col
+    0  a1  1  1  1     new
+    1  a2  0  1  0     new
+    2  a3  1  0  1     new
 
 
 
@@ -1373,55 +599,10 @@ data.drop(columns=["B"])
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>A</th>
-      <th>C</th>
-      <th>new_col</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>a1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>new</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>a2</td>
-      <td>0</td>
-      <td>0</td>
-      <td>new</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>a3</td>
-      <td>1</td>
-      <td>1</td>
-      <td>new</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+       id  A  C new_col
+    0  a1  1  1     new
+    1  a2  0  0     new
+    2  a3  1  1     new
 
 
 
@@ -1435,43 +616,8 @@ data.drop(index=[0, 1])
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>new_col</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2</th>
-      <td>a3</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>new</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+       id  A  B  C new_col
+    2  a3  1  0  1     new
 
 
 
@@ -1522,81 +668,15 @@ data.describe()
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>count</th>
-      <td>3.000000</td>
-      <td>3.000000</td>
-      <td>3.000000</td>
-    </tr>
-    <tr>
-      <th>mean</th>
-      <td>0.666667</td>
-      <td>0.666667</td>
-      <td>0.666667</td>
-    </tr>
-    <tr>
-      <th>std</th>
-      <td>0.577350</td>
-      <td>0.577350</td>
-      <td>0.577350</td>
-    </tr>
-    <tr>
-      <th>min</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>25%</th>
-      <td>0.500000</td>
-      <td>0.500000</td>
-      <td>0.500000</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+                  A         B         C
+    count  3.000000  3.000000  3.000000
+    mean   0.666667  0.666667  0.666667
+    std    0.577350  0.577350  0.577350
+    min    0.000000  0.000000  0.000000
+    25%    0.500000  0.500000  0.500000
+    50%    1.000000  1.000000  1.000000
+    75%    1.000000  1.000000  1.000000
+    max    1.000000  1.000000  1.000000
 
 
 
@@ -1657,112 +737,20 @@ data
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>factor</th>
-      <th>id</th>
-      <th>env</th>
-      <th>obs</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>A</td>
-      <td>id_4</td>
-      <td>env_1</td>
-      <td>-0.096375</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>B</td>
-      <td>id_6</td>
-      <td>env_2</td>
-      <td>-0.501217</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>C</td>
-      <td>id_2</td>
-      <td>env_1</td>
-      <td>0.653886</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>D</td>
-      <td>id_1</td>
-      <td>env_2</td>
-      <td>0.592581</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>A</td>
-      <td>id_2</td>
-      <td>env_1</td>
-      <td>-0.573104</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>115</th>
-      <td>D</td>
-      <td>id_3</td>
-      <td>env_2</td>
-      <td>-0.144350</td>
-    </tr>
-    <tr>
-      <th>116</th>
-      <td>A</td>
-      <td>id_1</td>
-      <td>env_1</td>
-      <td>1.098145</td>
-    </tr>
-    <tr>
-      <th>117</th>
-      <td>B</td>
-      <td>id_2</td>
-      <td>env_2</td>
-      <td>1.206627</td>
-    </tr>
-    <tr>
-      <th>118</th>
-      <td>C</td>
-      <td>id_2</td>
-      <td>env_1</td>
-      <td>-0.565825</td>
-    </tr>
-    <tr>
-      <th>119</th>
-      <td>D</td>
-      <td>id_5</td>
-      <td>env_2</td>
-      <td>0.837069</td>
-    </tr>
-  </tbody>
-</table>
-<p>120 rows × 4 columns</p>
-</div>
+        factor    id    env       obs
+    0        A  id_4  env_1 -0.103541
+    1        B  id_5  env_2 -0.743779
+    2        C  id_3  env_1  1.367427
+    3        D  id_1  env_2  1.277709
+    4        A  id_5  env_1 -0.036865
+    ..     ...   ...    ...       ...
+    115      D  id_2  env_2  1.090125
+    116      A  id_3  env_1  1.992980
+    117      B  id_2  env_2 -1.098938
+    118      C  id_5  env_1  0.973049
+    119      D  id_3  env_2 -0.049207
+    
+    [120 rows x 4 columns]
 
 
 
@@ -1792,12 +780,12 @@ data["id"].value_counts()
 
 
 
-    id_2    27
-    id_1    22
-    id_4    20
-    id_5    19
-    id_6    16
-    id_3    16
+    id_3    26
+    id_5    21
+    id_2    20
+    id_6    20
+    id_4    17
+    id_1    16
     Name: id, dtype: int64
 
 
@@ -1824,17 +812,17 @@ data["obs"].value_counts()
 
 
 
-    -0.096375    1
-    -0.501217    1
-    -1.738500    1
-     0.885649    1
-     0.046750    1
+    -0.103541    1
+    -0.743779    1
+    -0.420372    1
+    -0.974859    1
+     0.847130    1
                 ..
-    -2.412101    1
-    -0.225374    1
-    -0.001173    1
-    -1.442376    1
-     0.837069    1
+    -0.801611    1
+     0.609561    1
+    -0.305139    1
+     0.960369    1
+    -0.049207    1
     Name: obs, Length: 120, dtype: int64
 
 
@@ -1848,13 +836,13 @@ data["obs"].describe()
 
 
     count    120.000000
-    mean       0.036494
-    std        1.002144
-    min       -2.412101
-    25%       -0.667615
-    50%        0.008102
-    75%        0.762718
-    max        2.922766
+    mean      -0.007360
+    std        0.996616
+    min       -3.128698
+    25%       -0.673746
+    50%       -0.078736
+    75%        0.718717
+    max        2.401238
     Name: obs, dtype: float64
 
 
@@ -1890,69 +878,12 @@ data_sub[:5]
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>factor</th>
-      <th>id</th>
-      <th>env</th>
-      <th>obs</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2</th>
-      <td>C</td>
-      <td>id_2</td>
-      <td>env_1</td>
-      <td>0.653886</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>D</td>
-      <td>id_1</td>
-      <td>env_2</td>
-      <td>0.592581</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>B</td>
-      <td>id_5</td>
-      <td>env_2</td>
-      <td>1.583229</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>C</td>
-      <td>id_4</td>
-      <td>env_1</td>
-      <td>0.875182</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>D</td>
-      <td>id_5</td>
-      <td>env_2</td>
-      <td>1.416503</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+       factor    id    env       obs
+    2       C  id_3  env_1  1.367427
+    3       D  id_1  env_2  1.277709
+    5       B  id_4  env_2  0.018896
+    6       C  id_3  env_1  0.697119
+    10      C  id_2  env_1  0.129155
 
 
 
@@ -1983,69 +914,12 @@ data_id1[:5]
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>factor</th>
-      <th>id</th>
-      <th>env</th>
-      <th>obs</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>3</th>
-      <td>D</td>
-      <td>id_1</td>
-      <td>env_2</td>
-      <td>0.592581</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>A</td>
-      <td>id_1</td>
-      <td>env_1</td>
-      <td>0.043624</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>C</td>
-      <td>id_1</td>
-      <td>env_1</td>
-      <td>0.154333</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>C</td>
-      <td>id_1</td>
-      <td>env_1</td>
-      <td>0.355309</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>A</td>
-      <td>id_1</td>
-      <td>env_1</td>
-      <td>0.879280</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+       factor    id    env       obs
+    3       D  id_1  env_2  1.277709
+    12      A  id_1  env_1 -0.514876
+    15      D  id_1  env_2 -0.910731
+    18      C  id_1  env_1  0.324932
+    23      D  id_1  env_2 -0.915508
 
 
 
@@ -2077,83 +951,14 @@ data.query("id == 'id_1' and (obs > 1 or obs < -1)")
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>factor</th>
-      <th>id</th>
-      <th>env</th>
-      <th>obs</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>21</th>
-      <td>B</td>
-      <td>id_1</td>
-      <td>env_2</td>
-      <td>-1.950799</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>D</td>
-      <td>id_1</td>
-      <td>env_2</td>
-      <td>1.524525</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td>A</td>
-      <td>id_1</td>
-      <td>env_1</td>
-      <td>-1.442376</td>
-    </tr>
-    <tr>
-      <th>43</th>
-      <td>D</td>
-      <td>id_1</td>
-      <td>env_2</td>
-      <td>-1.418744</td>
-    </tr>
-    <tr>
-      <th>68</th>
-      <td>A</td>
-      <td>id_1</td>
-      <td>env_1</td>
-      <td>1.929814</td>
-    </tr>
-    <tr>
-      <th>81</th>
-      <td>B</td>
-      <td>id_1</td>
-      <td>env_2</td>
-      <td>1.399891</td>
-    </tr>
-    <tr>
-      <th>116</th>
-      <td>A</td>
-      <td>id_1</td>
-      <td>env_1</td>
-      <td>1.098145</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+        factor    id    env       obs
+    3        D  id_1  env_2  1.277709
+    30       C  id_1  env_1  1.959333
+    50       C  id_1  env_1 -1.807202
+    53       B  id_1  env_2  1.226145
+    95       D  id_1  env_2 -2.187798
+    102      C  id_1  env_1 -3.128698
+    113      B  id_1  env_2  1.556891
 
 
 
@@ -2168,12 +973,12 @@ data.groupby("id")["obs"].mean()
 
 
     id
-    id_1    0.227263
-    id_2    0.121979
-    id_3   -0.229144
-    id_4   -0.161469
-    id_5    0.312349
-    id_6   -0.184553
+    id_1   -0.353290
+    id_2    0.010237
+    id_3    0.338903
+    id_4    0.089247
+    id_5   -0.069404
+    id_6   -0.215322
     Name: obs, dtype: float64
 
 
@@ -2187,30 +992,29 @@ data.groupby(["id", "factor"])["obs"].mean()
 
 
     id    factor
-    id_1  A         0.450216
-          B        -0.125937
-          C         0.488375
-          D         0.122448
-    id_2  A        -0.030652
-          B         0.129420
-          C         0.475717
-          D        -0.475298
-    id_3  A         0.056030
-          B        -0.654136
-          C        -0.165900
-          D        -0.370053
-    id_4  A        -0.523897
-          B        -0.246820
-          C        -0.083987
-          D         0.160026
-    id_5  A         0.258584
-          B         0.823033
-          C        -0.208428
-          D         0.331506
-    id_6  A         0.218340
-          B        -0.417258
-          C        -0.275666
-          D        -0.721520
+    id_1  A        -0.572145
+          B         0.800764
+          C        -0.662909
+          D        -0.622944
+    id_2  A        -0.035847
+          B        -0.379162
+          C        -0.028974
+          D         0.710803
+    id_3  A         0.537934
+          B         0.016166
+          C         0.474403
+          D         0.337999
+    id_4  A         0.344797
+          B        -0.510488
+          D         0.190927
+    id_5  A        -0.078994
+          B        -0.326861
+          C         0.162713
+          D         0.018248
+    id_6  A        -0.401546
+          B         0.269396
+          C        -0.271808
+          D        -0.718168
     Name: obs, dtype: float64
 
 
@@ -2226,217 +1030,31 @@ pivot
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-      <th>mean</th>
-      <th>std</th>
-      <th>count</th>
-      <th>&lt;lambda_0&gt;</th>
-    </tr>
-    <tr>
-      <th>id</th>
-      <th>factor</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th rowspan="4" valign="top">id_1</th>
-      <th>A</th>
-      <td>0.450216</td>
-      <td>1.149487</td>
-      <td>6</td>
-      <td>3.372190</td>
-    </tr>
-    <tr>
-      <th>B</th>
-      <td>-0.125937</td>
-      <td>1.196017</td>
-      <td>6</td>
-      <td>3.350690</td>
-    </tr>
-    <tr>
-      <th>C</th>
-      <td>0.488375</td>
-      <td>0.444752</td>
-      <td>5</td>
-      <td>0.945838</td>
-    </tr>
-    <tr>
-      <th>D</th>
-      <td>0.122448</td>
-      <td>1.130064</td>
-      <td>5</td>
-      <td>2.943270</td>
-    </tr>
-    <tr>
-      <th rowspan="4" valign="top">id_2</th>
-      <th>A</th>
-      <td>-0.030652</td>
-      <td>0.525032</td>
-      <td>4</td>
-      <td>1.072389</td>
-    </tr>
-    <tr>
-      <th>B</th>
-      <td>0.129420</td>
-      <td>0.842530</td>
-      <td>8</td>
-      <td>2.520642</td>
-    </tr>
-    <tr>
-      <th>C</th>
-      <td>0.475717</td>
-      <td>0.950265</td>
-      <td>10</td>
-      <td>2.940279</td>
-    </tr>
-    <tr>
-      <th>D</th>
-      <td>-0.475298</td>
-      <td>0.956688</td>
-      <td>5</td>
-      <td>2.488064</td>
-    </tr>
-    <tr>
-      <th rowspan="4" valign="top">id_3</th>
-      <th>A</th>
-      <td>0.056030</td>
-      <td>0.926571</td>
-      <td>7</td>
-      <td>2.849754</td>
-    </tr>
-    <tr>
-      <th>B</th>
-      <td>-0.654136</td>
-      <td>0.668831</td>
-      <td>4</td>
-      <td>1.575225</td>
-    </tr>
-    <tr>
-      <th>C</th>
-      <td>-0.165900</td>
-      <td>1.353717</td>
-      <td>2</td>
-      <td>1.914444</td>
-    </tr>
-    <tr>
-      <th>D</th>
-      <td>-0.370053</td>
-      <td>0.300505</td>
-      <td>3</td>
-      <td>0.566801</td>
-    </tr>
-    <tr>
-      <th rowspan="4" valign="top">id_4</th>
-      <th>A</th>
-      <td>-0.523897</td>
-      <td>0.786162</td>
-      <td>5</td>
-      <td>2.097706</td>
-    </tr>
-    <tr>
-      <th>B</th>
-      <td>-0.246820</td>
-      <td>1.020748</td>
-      <td>5</td>
-      <td>2.157371</td>
-    </tr>
-    <tr>
-      <th>C</th>
-      <td>-0.083987</td>
-      <td>0.864944</td>
-      <td>4</td>
-      <td>2.064482</td>
-    </tr>
-    <tr>
-      <th>D</th>
-      <td>0.160026</td>
-      <td>0.762164</td>
-      <td>6</td>
-      <td>1.860967</td>
-    </tr>
-    <tr>
-      <th rowspan="4" valign="top">id_5</th>
-      <th>A</th>
-      <td>0.258584</td>
-      <td>0.846841</td>
-      <td>3</td>
-      <td>1.663688</td>
-    </tr>
-    <tr>
-      <th>B</th>
-      <td>0.823033</td>
-      <td>1.107697</td>
-      <td>3</td>
-      <td>2.031118</td>
-    </tr>
-    <tr>
-      <th>C</th>
-      <td>-0.208428</td>
-      <td>0.766466</td>
-      <td>3</td>
-      <td>1.490895</td>
-    </tr>
-    <tr>
-      <th>D</th>
-      <td>0.331506</td>
-      <td>1.716422</td>
-      <td>10</td>
-      <td>5.334867</td>
-    </tr>
-    <tr>
-      <th rowspan="4" valign="top">id_6</th>
-      <th>A</th>
-      <td>0.218340</td>
-      <td>1.552812</td>
-      <td>5</td>
-      <td>3.078880</td>
-    </tr>
-    <tr>
-      <th>B</th>
-      <td>-0.417258</td>
-      <td>0.882586</td>
-      <td>4</td>
-      <td>2.123702</td>
-    </tr>
-    <tr>
-      <th>C</th>
-      <td>-0.275666</td>
-      <td>0.778769</td>
-      <td>6</td>
-      <td>1.978419</td>
-    </tr>
-    <tr>
-      <th>D</th>
-      <td>-0.721520</td>
-      <td>NaN</td>
-      <td>1</td>
-      <td>0.000000</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+                     mean       std  count  <lambda_0>
+    id   factor                                       
+    id_1 A      -0.572145  0.275969      4    0.600521
+         B       0.800764  1.036493      3    1.937635
+         C      -0.662909  2.253997      4    5.088031
+         D      -0.622944  1.253941      5    3.465507
+    id_2 A      -0.035847  0.835036      5    2.113688
+         B      -0.379162  0.991673      4    2.105734
+         C      -0.028974  1.273576      8    3.951148
+         D       0.710803  0.338261      3    0.649650
+    id_3 A       0.537934  1.056636      5    2.838498
+         B       0.016166  1.082023      6    2.891030
+         C       0.474403  0.646405      7    1.984283
+         D       0.337999  1.121005      8    3.527217
+    id_4 A       0.344797  0.761420      7    2.389062
+         B      -0.510488  0.353390      4    0.731529
+         D       0.190927  1.028478      6    2.801286
+    id_5 A      -0.078994  0.091463      3    0.167741
+         B      -0.326861  0.728683      7    2.330027
+         C       0.162713  0.888686      6    2.129052
+         D       0.018248  0.861026      5    2.056391
+    id_6 A      -0.401546  1.009011      6    2.810509
+         B       0.269396  0.824500      6    2.113502
+         C      -0.271808  1.400287      5    3.316543
+         D      -0.718168  0.471266      3    0.931386
 
 
 
@@ -2448,69 +1066,12 @@ pivot.loc["id_5"]
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>mean</th>
-      <th>std</th>
-      <th>count</th>
-      <th>&lt;lambda_0&gt;</th>
-    </tr>
-    <tr>
-      <th>factor</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>A</th>
-      <td>0.258584</td>
-      <td>0.846841</td>
-      <td>3</td>
-      <td>1.663688</td>
-    </tr>
-    <tr>
-      <th>B</th>
-      <td>0.823033</td>
-      <td>1.107697</td>
-      <td>3</td>
-      <td>2.031118</td>
-    </tr>
-    <tr>
-      <th>C</th>
-      <td>-0.208428</td>
-      <td>0.766466</td>
-      <td>3</td>
-      <td>1.490895</td>
-    </tr>
-    <tr>
-      <th>D</th>
-      <td>0.331506</td>
-      <td>1.716422</td>
-      <td>10</td>
-      <td>5.334867</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+                mean       std  count  <lambda_0>
+    factor                                       
+    A      -0.078994  0.091463      3    0.167741
+    B      -0.326861  0.728683      7    2.330027
+    C       0.162713  0.888686      6    2.129052
+    D       0.018248  0.861026      5    2.056391
 
 
 
@@ -2522,10 +1083,10 @@ pivot.loc["id_3"].loc["A"]
 
 
 
-    mean          0.056030
-    std           0.926571
-    count         7.000000
-    <lambda_0>    2.849754
+    mean          0.537934
+    std           1.056636
+    count         5.000000
+    <lambda_0>    2.838498
     Name: A, dtype: float64
 
 
@@ -2539,252 +1100,30 @@ data_pivot
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>factor</th>
-      <th>mean</th>
-      <th>std</th>
-      <th>count</th>
-      <th>&lt;lambda_0&gt;</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>id_1</td>
-      <td>A</td>
-      <td>0.450216</td>
-      <td>1.149487</td>
-      <td>6</td>
-      <td>3.372190</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>id_1</td>
-      <td>B</td>
-      <td>-0.125937</td>
-      <td>1.196017</td>
-      <td>6</td>
-      <td>3.350690</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>id_1</td>
-      <td>C</td>
-      <td>0.488375</td>
-      <td>0.444752</td>
-      <td>5</td>
-      <td>0.945838</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>id_1</td>
-      <td>D</td>
-      <td>0.122448</td>
-      <td>1.130064</td>
-      <td>5</td>
-      <td>2.943270</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>id_2</td>
-      <td>A</td>
-      <td>-0.030652</td>
-      <td>0.525032</td>
-      <td>4</td>
-      <td>1.072389</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>id_2</td>
-      <td>B</td>
-      <td>0.129420</td>
-      <td>0.842530</td>
-      <td>8</td>
-      <td>2.520642</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>id_2</td>
-      <td>C</td>
-      <td>0.475717</td>
-      <td>0.950265</td>
-      <td>10</td>
-      <td>2.940279</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>id_2</td>
-      <td>D</td>
-      <td>-0.475298</td>
-      <td>0.956688</td>
-      <td>5</td>
-      <td>2.488064</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>id_3</td>
-      <td>A</td>
-      <td>0.056030</td>
-      <td>0.926571</td>
-      <td>7</td>
-      <td>2.849754</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>id_3</td>
-      <td>B</td>
-      <td>-0.654136</td>
-      <td>0.668831</td>
-      <td>4</td>
-      <td>1.575225</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>id_3</td>
-      <td>C</td>
-      <td>-0.165900</td>
-      <td>1.353717</td>
-      <td>2</td>
-      <td>1.914444</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>id_3</td>
-      <td>D</td>
-      <td>-0.370053</td>
-      <td>0.300505</td>
-      <td>3</td>
-      <td>0.566801</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>id_4</td>
-      <td>A</td>
-      <td>-0.523897</td>
-      <td>0.786162</td>
-      <td>5</td>
-      <td>2.097706</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>id_4</td>
-      <td>B</td>
-      <td>-0.246820</td>
-      <td>1.020748</td>
-      <td>5</td>
-      <td>2.157371</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>id_4</td>
-      <td>C</td>
-      <td>-0.083987</td>
-      <td>0.864944</td>
-      <td>4</td>
-      <td>2.064482</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>id_4</td>
-      <td>D</td>
-      <td>0.160026</td>
-      <td>0.762164</td>
-      <td>6</td>
-      <td>1.860967</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>id_5</td>
-      <td>A</td>
-      <td>0.258584</td>
-      <td>0.846841</td>
-      <td>3</td>
-      <td>1.663688</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>id_5</td>
-      <td>B</td>
-      <td>0.823033</td>
-      <td>1.107697</td>
-      <td>3</td>
-      <td>2.031118</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>id_5</td>
-      <td>C</td>
-      <td>-0.208428</td>
-      <td>0.766466</td>
-      <td>3</td>
-      <td>1.490895</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>id_5</td>
-      <td>D</td>
-      <td>0.331506</td>
-      <td>1.716422</td>
-      <td>10</td>
-      <td>5.334867</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>id_6</td>
-      <td>A</td>
-      <td>0.218340</td>
-      <td>1.552812</td>
-      <td>5</td>
-      <td>3.078880</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>id_6</td>
-      <td>B</td>
-      <td>-0.417258</td>
-      <td>0.882586</td>
-      <td>4</td>
-      <td>2.123702</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>id_6</td>
-      <td>C</td>
-      <td>-0.275666</td>
-      <td>0.778769</td>
-      <td>6</td>
-      <td>1.978419</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>id_6</td>
-      <td>D</td>
-      <td>-0.721520</td>
-      <td>NaN</td>
-      <td>1</td>
-      <td>0.000000</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+          id factor      mean       std  count  <lambda_0>
+    0   id_1      A -0.572145  0.275969      4    0.600521
+    1   id_1      B  0.800764  1.036493      3    1.937635
+    2   id_1      C -0.662909  2.253997      4    5.088031
+    3   id_1      D -0.622944  1.253941      5    3.465507
+    4   id_2      A -0.035847  0.835036      5    2.113688
+    5   id_2      B -0.379162  0.991673      4    2.105734
+    6   id_2      C -0.028974  1.273576      8    3.951148
+    7   id_2      D  0.710803  0.338261      3    0.649650
+    8   id_3      A  0.537934  1.056636      5    2.838498
+    9   id_3      B  0.016166  1.082023      6    2.891030
+    10  id_3      C  0.474403  0.646405      7    1.984283
+    11  id_3      D  0.337999  1.121005      8    3.527217
+    12  id_4      A  0.344797  0.761420      7    2.389062
+    13  id_4      B -0.510488  0.353390      4    0.731529
+    14  id_4      D  0.190927  1.028478      6    2.801286
+    15  id_5      A -0.078994  0.091463      3    0.167741
+    16  id_5      B -0.326861  0.728683      7    2.330027
+    17  id_5      C  0.162713  0.888686      6    2.129052
+    18  id_5      D  0.018248  0.861026      5    2.056391
+    19  id_6      A -0.401546  1.009011      6    2.810509
+    20  id_6      B  0.269396  0.824500      6    2.113502
+    21  id_6      C -0.271808  1.400287      5    3.316543
+    22  id_6      D -0.718168  0.471266      3    0.931386
 
 
 
@@ -2799,28 +1138,27 @@ data_pivot.to_csv("out_pivot.csv", index=False)
 ```
 
     id,factor,mean,std,count,<lambda_0>
-    id_1,A,0.4502155942942296,1.1494867060236997,6,3.3721897757162207
-    id_1,B,-0.1259366610516431,1.196016985460374,6,3.350689989092595
-    id_1,C,0.4883747585534007,0.44475233854395824,5,0.9458380117674557
-    id_1,D,0.12244768621716347,1.1300641404870861,5,2.943269690440943
-    id_2,A,-0.030652242441548905,0.5250324077373204,4,1.072389338186159
-    id_2,B,0.12942035707074961,0.8425298886853323,8,2.520641650849491
-    id_2,C,0.4757170648811825,0.9502646143283857,10,2.940279011945107
-    id_2,D,-0.47529762313270607,0.956688486181213,5,2.4880643354394296
-    id_3,A,0.05602950865985269,0.9265710782024227,7,2.849753629637062
-    id_3,B,-0.6541364904986321,0.668831320727894,4,1.5752249399766416
-    id_3,C,-0.16589986071968604,1.3537165137416785,2,1.9144442533419062
-    id_3,D,-0.37005307748887545,0.3005047663244578,3,0.5668013533114964
-    id_4,A,-0.523897437744935,0.7861618270334397,5,2.0977061799076733
-    id_4,B,-0.24681997904527445,1.0207480310530137,5,2.1573714859726527
-    id_4,C,-0.08398675310215067,0.8649444477299162,4,2.0644821538776297
-    id_4,D,0.16002643891394427,0.7621635992642647,6,1.8609673554616017
-    id_5,A,0.2585839127391286,0.8468407992687575,3,1.6636883541767142
-    id_5,B,0.8230330925737949,1.1076966694366093,3,2.031118209894996
-    id_5,C,-0.20842750162321177,0.7664656533758334,3,1.4908953311812227
-    id_5,D,0.3315064539246367,1.716422386830676,10,5.334867463079514
-    id_6,A,0.2183398832539288,1.5528119273700163,5,3.0788800254758226
-    id_6,B,-0.41725782592547744,0.8825863995871458,4,2.1237017745237234
-    id_6,C,-0.275666141606862,0.7787689601953202,6,1.9784193244503814
-    id_6,D,-0.7215196634577331,,1,0.0
+    id_1,A,-0.5721451319957364,0.2759691621869315,4,0.6005207714131151
+    id_1,B,0.8007641707797974,1.0364934807700155,3,1.9376345238846369
+    id_1,C,-0.6629089104632997,2.253996983629481,4,5.088031295812392
+    id_1,D,-0.6229444416720034,1.2539408642924903,5,3.465507221194403
+    id_2,A,-0.035846506594991834,0.8350360108995132,5,2.113687559524173
+    id_2,B,-0.379161981588368,0.9916730486129572,4,2.105734163902122
+    id_2,C,-0.028973912570866345,1.2735759529812984,8,3.9511482250204737
+    id_2,D,0.7108034172724883,0.33826146647224276,3,0.6496501604168332
+    id_3,A,0.5379337768185726,1.0566362183461382,5,2.838498093174227
+    id_3,B,0.016166265985501038,1.0820228345659655,6,2.8910301815434467
+    id_3,C,0.474403439830994,0.646404644751632,7,1.9842826893508816
+    id_3,D,0.3379989349365774,1.1210052264622168,8,3.5272166799089844
+    id_4,A,0.3447970839358367,0.7614202452739026,7,2.389062256967856
+    id_4,B,-0.5104878699033722,0.35339019404120087,4,0.7315285533460211
+    id_4,D,0.19092723591472208,1.0284776900867785,6,2.8012856309176444
+    id_5,A,-0.07899438127161257,0.09146273308524398,3,0.167740923053321
+    id_5,B,-0.32686142994641176,0.728683117065449,7,2.3300269181696964
+    id_5,C,0.16271334666682133,0.8886856920836689,6,2.1290522592475236
+    id_5,D,0.018248250423816382,0.8610262343729462,5,2.056390978154677
+    id_6,A,-0.40154626931806864,1.00901117222255,6,2.810509048350021
+    id_6,B,0.2693955898375124,0.8244996811829504,6,2.113501718226548
+    id_6,C,-0.27180772132303965,1.4002872099962633,5,3.3165427766752997
+    id_6,D,-0.7181675436798494,0.4712663301452729,3,0.9313858318138433
 
