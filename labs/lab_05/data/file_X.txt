@@ -1,0 +1,8 @@
+# Filename: file_X.txt
+# Date: 02-17-2023
+# Author: James Chen
+# Description: This is the file for lab 5
+cb1,ca2,cb3,ca4,cb5,ca6,cb7,ca8
+a,2,3,b,8,2,3,b
+b,4,5,a,1,9,2,a
+c,9,3,c,-,9,3,B
