@@ -1,6 +1,6 @@
 # APSC-5984 Lab 6: Tidy Data
 
-Due: 2023-02-27 (Monday) 23:59:59
+Due: 2023-03-13 (Monday) 23:59:59
 
 - [APSC-5984 Lab 6: Tidy Data](#apsc-5984-lab-6-tidy-data)
   - [0. Overview](#0-overview)
