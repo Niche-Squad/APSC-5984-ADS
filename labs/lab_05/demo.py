@@ -90,7 +90,7 @@ import re
 # *: repeat 0 or more
 re.findall(r"\d+", sample_string)
 
-# tidy_3_bboard.csv ---- ---- ---- ---- ---- ---- ----
+# tidy_3_tb.csv ---- ---- ---- ---- ---- ---- ----
 filepath = os.path.join("data", "tidy_3_tb.csv")
 data = pd.read_csv(filepath)
 
