@@ -1369,7 +1369,7 @@ sum_cod
 
 
 
-
+    
           cod  sum_by_cod
     0     A01          51
     1     A02          62
