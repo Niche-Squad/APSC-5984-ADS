@@ -53,11 +53,11 @@ All students are expected to maintain the highest standards of academic integrit
 | 2 | Coding environment | Variables; If-else statement | Python basics I |
 | 3 | List and Array | Dictionary and Loop | Python basics II |
 | 4 | File system | String processing | File system |
-| 5 | DataFrame | Tidy data | Dataframe |
-| 6 | [No class] <br> Presidents' Day | Intro to database | Public datasets |
-| 7 | Grouping and summarizing | Multiple dataframes | More Pandas practices |
+| 5 | DataFrame | Tidy data I | Dataframe |
+| 6 | [No class] <br> Presidents' Day | Tidy data II | Tidy data |
+| 7 | API | SQLite | Tidy data |
 | 8 | [No class] <br> Spring break | [No class] <br> Spring break | [No class] <br> Spring break |
-| 9 | Regression model | Regularization | Scikit-learn |
+| 9 | Regression | Regularization | Scikit-learn |
 | 10 | Feature selection | Model validation | Feature selection |
 | 11 | Principal component analysis | K-means clustering | PCA and K-means |
 | 12 | Intro to computer vision | Convolution | OpenCV |
