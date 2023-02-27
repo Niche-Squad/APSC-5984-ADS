@@ -40,6 +40,6 @@ git remote -v
 
 ```bash
 git fetch upstream
-git merge upstream/main --no-edit --allow-unrelated-histories
+git merge -X ours upstream/main --no-edit --allow-unrelated-histories
 git push
 ```
