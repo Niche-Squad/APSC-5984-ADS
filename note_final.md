@@ -1,4 +1,4 @@
-# Final Presentation and Final Fxam
+# Final Presentation and Final Exam
 
 ## Presentation
 
