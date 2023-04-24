@@ -45,6 +45,14 @@ The lab assignment will be posted in the repository at least one week before the
 
 All students are expected to maintain the highest standards of academic integrity.  Cheating, plagiarism or any other form of academic dishonesty will not be tolerated. If a student is found to be cheating, the student will receive a grade of 0 for the assignment.
 
+## Grading
+
+| Items | Percentage |
+| :---- | :--------- |
+| Lab assignments | 60% |
+| Final project | 15% |
+| Final exam | 25% |
+
 ## Schedule
 
 | Week | Lecture 1 | Lecture 2 | Lab |
