@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-import random
 import os
 from abc import ABC, abstractmethod
 
@@ -57,6 +56,15 @@ class Analyzer:
         y_pred = model.predict(X_test)
         # vis
         self.__vis_pred(y_test, y_pred)
+        # return
+        return model
+
+    def pred_nn(self):
+        """PSEUDO CODE"""
+        X_train, X_test, y_train, y_test = self.__split_data()
+        # fit
+        model = NeuralNetwork()
+        # vis
         # return
         return model
 
@@ -216,8 +224,8 @@ class Cow(ABC):
         self.COEF_MILK = 500
         # breed standardization
         self.INIT_WEIGHT = 0
-        self.W = 0
-        self.B = 0
+        self.W = 0  # slope
+        self.B = 0  # intercept
         # data
         self.weights = weights
         self.productions = productions
